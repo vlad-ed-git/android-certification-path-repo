@@ -8,4 +8,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
     }
+
+    override fun onResume() {
+        super.onResume()
+        CustomToast.showToast(
+            this,
+            message = getString(R.string.bad_internet_connection),
+            image_res = R.drawable.sad
+        )
+    }
 }
