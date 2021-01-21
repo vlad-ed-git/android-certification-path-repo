@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">CustomToast</string>
+    <string name="bad_internet_connection">We couldn\'t connect to the internet!</string>
 </resources>
