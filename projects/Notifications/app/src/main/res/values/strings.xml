@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Notifications</string>
+    <string name="notification_channel_name">Default Notification Channel</string>
+    <string name="notification_channel_description">Description of the default notification channel</string>
 </resources>
