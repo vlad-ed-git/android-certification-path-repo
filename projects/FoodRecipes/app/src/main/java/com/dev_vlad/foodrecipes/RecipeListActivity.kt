@@ -8,6 +8,5 @@ class RecipeListActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recipe_list)
 
-        toggleProgressBar(true)
     }
 }
