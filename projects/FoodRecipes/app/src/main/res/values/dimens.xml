@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- clickable -->
+    <dimen name="clickable_std">48dp</dimen>
+
+    <!-- icons -->
+    <dimen name="icon_std">24dp</dimen>
+
+    <!-- space -->
+    <dimen name="space_md">16dp</dimen>
+    <dimen name="space_std">8dp</dimen>
+</resources>
