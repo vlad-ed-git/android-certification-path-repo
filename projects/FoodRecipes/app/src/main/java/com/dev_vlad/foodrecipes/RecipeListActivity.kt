@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import com.dev_vlad.foodrecipes.api.ServiceGenerator
+import com.dev_vlad.foodrecipes.api.responses.RecipeResponse
 import com.dev_vlad.foodrecipes.api.responses.RecipeSearchResponse
 import com.dev_vlad.foodrecipes.util.Constants
 import retrofit2.Call
@@ -25,15 +26,14 @@ class RecipeListActivity : BaseActivity() {
 
     fun testRetrofitRequest(){
       val recipeApi =   ServiceGenerator.getRecipeApi()
-      val responseCall : Call<RecipeSearchResponse?>? =
-              recipeApi.searchRecipe(
+      val responseCall : Call<RecipeResponse?>? =
+              recipeApi.getRecipe(
                       Constants.API_KEY,
-                      "chicken breast",
-                      "1"
+                      recipe_id = "8c0314"
               )
         responseCall?.enqueue(
-                object : Callback<RecipeSearchResponse?>{
-                    override fun onResponse(call: Call<RecipeSearchResponse?>, response: Response<RecipeSearchResponse?>) {
+                object : Callback<RecipeResponse?>{
+                    override fun onResponse(call: Call<RecipeResponse?>, response: Response<RecipeResponse?>) {
                         Log.d(LOG_TAG, response.code().toString())
                         if(response.code() == 200 ){
                             Log.d(LOG_TAG, "onResponse ${response.body()}")
@@ -42,7 +42,7 @@ class RecipeListActivity : BaseActivity() {
                         }
                     }
 
-                    override fun onFailure(call: Call<RecipeSearchResponse?>, t: Throwable) {
+                    override fun onFailure(call: Call<RecipeResponse?>, t: Throwable) {
                         Log.d(LOG_TAG, "onFailure ${t.message}", t)
                     }
 
