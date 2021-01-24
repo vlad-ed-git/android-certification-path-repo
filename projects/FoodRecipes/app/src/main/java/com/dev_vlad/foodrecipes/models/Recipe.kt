@@ -69,4 +69,8 @@ data class Recipe(
             return arrayOfNulls(size)
         }
     }
+
+    override fun toString(): String {
+        return "${Recipe::class.java.simpleName} : $title $publisher $ingredients $recipe_id $image_url Social Rank: $social_rank"
+    }
 }

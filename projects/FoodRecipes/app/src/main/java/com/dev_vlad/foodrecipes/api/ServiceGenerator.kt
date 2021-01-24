@@ -1,4 +1,4 @@
-package com.dev_vlad.foodrecipes.requests
+package com.dev_vlad.foodrecipes.api
 
 import com.dev_vlad.foodrecipes.util.Constants
 import retrofit2.Retrofit
