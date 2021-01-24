@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardElevation="@dimen/space_std">
+    app:cardElevation="@dimen/space_std"
+    android:paddingBottom="@dimen/icon_std"
+    android:layout_marginBottom="@dimen/space_md">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -31,13 +33,14 @@
                 android:textSize="@dimen/title_txt_size"
                 android:textColor="@color/black"
                 android:id="@+id/recipe_title"
-                android:paddingTop="@dimen/space_std"/>
+                android:padding="@dimen/space_std"/>
 
                 <TextView
                     app:layout_constraintTop_toBottomOf="@id/recipe_title"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintWidth_percent=".8"
-                    android:paddingTop="@dimen/space_std"
+                    android:paddingStart="@dimen/space_std"
+                    android:paddingEnd="@dimen/space_std"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/body_txt_size"
@@ -45,7 +48,8 @@
                     android:gravity="start"/>
 
                 <TextView
-                    android:paddingTop="@dimen/space_std"
+                    android:paddingStart="@dimen/space_std"
+                    android:paddingEnd="@dimen/space_std"
                     app:layout_constraintTop_toBottomOf="@id/recipe_title"
                     app:layout_constraintStart_toEndOf="@id/recipe_publisher"
                     app:layout_constraintEnd_toEndOf="parent"

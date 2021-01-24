@@ -13,11 +13,12 @@ import kotlin.math.roundToLong
 
 //accepts a generic recycler view holder
 class RecipeRecyclerAdapter(
-    private var recipeList : List<Recipe>,
     private val clickListener : OnRecipeClickListener
 )
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
+
+    private lateinit var recipeList : List<Recipe>
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         //only one for now
@@ -45,7 +46,10 @@ class RecipeRecyclerAdapter(
     }
 
     override fun getItemCount(): Int {
-        return recipeList.size
+        return if(::recipeList.isInitialized)
+            recipeList.size
+        else
+            0
     }
 
     fun setRecipes(newRecipeList: List<Recipe>){
