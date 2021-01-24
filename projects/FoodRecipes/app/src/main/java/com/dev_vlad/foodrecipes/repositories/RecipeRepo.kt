@@ -7,8 +7,12 @@ import com.dev_vlad.foodrecipes.models.Recipe
 
 object RecipeRepo {
 
-    fun getRecipes() : LiveData<List<Recipe>> {
+    fun getRecipes() : LiveData<ArrayList<Recipe>> {
         return RecipeApiClient.getRecipes()
+    }
+
+    fun searchRecipesApi(query:String, page:Int = 1){
+        RecipeApiClient.searchRecipesApi(query, page)
     }
 
 }

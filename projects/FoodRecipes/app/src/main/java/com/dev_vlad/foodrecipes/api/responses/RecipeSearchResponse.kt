@@ -8,11 +8,11 @@ class RecipeSearchResponse {
 
     @SerializedName("count")
     @Expose()
-    private var count : Int = 0;
+    var count : Int = 0;
 
     @SerializedName("recipes")
     @Expose()
-    private var recipes : List<Recipe> = arrayListOf()
+    var recipes : List<Recipe> = arrayListOf()
 
     override fun toString(): String {
         return "${RecipeSearchResponse::class.java.simpleName} : results count = $count"
