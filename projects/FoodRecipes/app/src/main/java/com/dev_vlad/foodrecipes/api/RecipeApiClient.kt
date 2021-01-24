@@ -95,7 +95,7 @@ object RecipeApiClient {
 
 
         } catch (e : IOException){
-            MyLogger.logThis(LOG_TAG, "run", "caught exception : ${e.message}", e.cause)
+            MyLogger.logThis(LOG_TAG, "run", "caught exception : ${e.message}", e)
             //to let user know that an error occurred
             mutableRecipes.postValue(null)
         }
