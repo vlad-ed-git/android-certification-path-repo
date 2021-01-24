@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="@dimen/space_std">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <ImageView
+            android:contentDescription="@string/recipe_image_content_description"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/img_height"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:scaleType="centerCrop"
+            android:id="@+id/recipe_image"
+            android:src="@drawable/ic_launcher_background"/>
+
+
+            <TextView
+                app:layout_constraintTop_toBottomOf="@id/recipe_image"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/title_txt_size"
+                android:textColor="@color/black"
+                android:id="@+id/recipe_title"
+                android:paddingTop="@dimen/space_std"/>
+
+                <TextView
+                    app:layout_constraintTop_toBottomOf="@id/recipe_title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintWidth_percent=".8"
+                    android:paddingTop="@dimen/space_std"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/body_txt_size"
+                    android:id="@+id/recipe_publisher"
+                    android:gravity="start"/>
+
+                <TextView
+                    android:paddingTop="@dimen/space_std"
+                    app:layout_constraintTop_toBottomOf="@id/recipe_title"
+                    app:layout_constraintStart_toEndOf="@id/recipe_publisher"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintWidth_percent=".2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/body_txt_size"
+                    android:textColor="@color/red"
+                    android:id="@+id/recipe_social_score"
+                    android:gravity="center"/>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

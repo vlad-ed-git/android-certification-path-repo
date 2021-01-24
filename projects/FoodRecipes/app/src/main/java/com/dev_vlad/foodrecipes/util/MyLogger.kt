@@ -5,10 +5,11 @@ import android.util.Log
 object MyLogger {
 
     private const val DEBUG = true
+    private const val LOG_TAG_PREFIX = "MyLogger"
 
     fun logThis(tag: String, location:String, msg:String, throwable: Throwable? = null) {
         if (DEBUG) {
-            Log.d(tag, "at $location : message $msg", throwable)
+            Log.d("${LOG_TAG_PREFIX}_$tag", "at $location : message $msg", throwable)
         }
     }
 }

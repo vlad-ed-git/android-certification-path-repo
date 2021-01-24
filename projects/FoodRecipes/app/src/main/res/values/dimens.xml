@@ -10,4 +10,12 @@
     <!-- space -->
     <dimen name="space_md">16dp</dimen>
     <dimen name="space_std">8dp</dimen>
+
+    <!-- images -->
+    <dimen name="img_height">250dp</dimen>
+    <dimen name="recycler_loading_height">80dp</dimen>
+
+    <!-- txt -->
+    <dimen name="title_txt_size">20sp</dimen>
+    <dimen name="body_txt_size">16sp</dimen>
 </resources>

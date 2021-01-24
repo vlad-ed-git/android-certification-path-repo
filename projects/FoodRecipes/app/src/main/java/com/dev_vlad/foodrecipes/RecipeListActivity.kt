@@ -20,6 +20,7 @@ class RecipeListActivity : BaseActivity() {
 
         recipeListViewModel = ViewModelProvider(this).get(RecipeListViewModel::class.java)
         subscribeToObservers()
+        searchRecipesApi()
     }
 
     private fun subscribeToObservers(){
@@ -31,6 +32,13 @@ class RecipeListActivity : BaseActivity() {
                 MyLogger.logThis(LOG_TAG, "subscribeToObservers()" , "${recipeList.size} recipes returned")
             }
         })
+    }
+
+    private fun searchRecipesApi(){
+        //test
+        val query = "chicken breast"
+        val page = 1
+        recipeListViewModel.searchRecipesApi(query, page)
     }
 
 }
