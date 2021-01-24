@@ -1,6 +1,7 @@
 package com.dev_vlad.foodrecipes
 
 import android.os.Bundle
+import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -28,7 +29,7 @@ class RecipeListActivity : BaseActivity() , OnRecipeClickListener {
 
         initRecycler()
         subscribeToObservers()
-        searchRecipesApi()
+        initSearchView()
     }
 
 
@@ -52,12 +53,6 @@ class RecipeListActivity : BaseActivity() , OnRecipeClickListener {
         })
     }
 
-    private fun searchRecipesApi(){
-        //test
-        val query = "chicken breast"
-        val page = 1
-        recipeListViewModel.searchRecipesApi(query, page)
-    }
 
     override fun onRecipeClick(position: Int) {
         MyLogger.logThis(LOG_TAG, "onRecipeClick" , ": clicked $position")
@@ -65,6 +60,26 @@ class RecipeListActivity : BaseActivity() , OnRecipeClickListener {
 
     override fun onRecipeCategoryClicked(category: String) {
         MyLogger.logThis(LOG_TAG, "onRecipeCategoryClicked" , " $category")
+    }
+
+
+    /*********** SEARCH VIEW  **/
+    private fun initSearchView(){
+       val searchView : SearchView = findViewById(R.id.search_view)
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                query?.let {
+                    recipeListViewModel.searchRecipesApi(it, page = 1)
+                    MyLogger.logThis(LOG_TAG, "onQueryTextSubmit", "query : $query" )
+                }
+                return false;
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return false //not interested
+            }
+
+        })
     }
 
 }
