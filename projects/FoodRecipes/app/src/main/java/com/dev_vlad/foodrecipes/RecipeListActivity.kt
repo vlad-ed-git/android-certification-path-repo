@@ -69,6 +69,7 @@ class RecipeListActivity : BaseActivity() , OnRecipeClickListener {
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
                 query?.let {
+                    recipeRecyclerAdapter.displayLoading()
                     recipeListViewModel.searchRecipesApi(it, page = 1)
                     MyLogger.logThis(LOG_TAG, "onQueryTextSubmit", "query : $query" )
                 }

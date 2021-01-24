@@ -11,6 +11,18 @@ data class Recipe(
     var image_url: String,
     var social_rank: Float
 ) : Parcelable {
+
+    //empty constructor with just title
+    //used only as loading placeholder --see recycler adapter
+    constructor(title: String) : this (
+                title,
+                "",
+                arrayOf(),
+                "",
+                "",
+                0f
+            )
+
     constructor(parcel: Parcel) : this(
         parcel.readString()!!,
         parcel.readString()!!,
