@@ -3,6 +3,7 @@ package com.dev_vlad.foodrecipes.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.dev_vlad.foodrecipes.R
 import com.dev_vlad.foodrecipes.adapters.viewholders.RecipeViewHolder
 import com.dev_vlad.foodrecipes.interfaces.OnRecipeClickListener
@@ -37,6 +38,10 @@ class RecipeRecyclerAdapter(
         recipeViewHolder.title.text = recipe.title
         recipeViewHolder.publisher.text = recipe.publisher
         recipeViewHolder.socialScore.text = recipe.social_rank.roundToInt().toString()
+        Glide.with(holder.itemView.context)
+            .load(recipe.image_url)
+            .placeholder(R.drawable.placeholder)
+            .into(recipeViewHolder.image)
     }
 
     override fun getItemCount(): Int {
