@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.dev_vlad.foodrecipes.models.Recipe
 import com.dev_vlad.foodrecipes.repositories.RecipeRepo
-import com.dev_vlad.foodrecipes.util.MyLogger
 
 class RecipeDetailsViewModel : ViewModel() {
 
@@ -13,15 +12,19 @@ class RecipeDetailsViewModel : ViewModel() {
     }
 
     private var isPerformingQuery = false
+    private lateinit var vmRecipeId : String
 
     fun getRecipe() : LiveData<Recipe> {
         return RecipeRepo.getARecipe()
     }
 
     fun searchRecipeByIdApi(recipeId:String){
+        this.vmRecipeId = recipeId
         this.isPerformingQuery = true
         RecipeRepo.searchRecipeByIdApi(recipeId = recipeId)
     }
+
+    fun getRecipeId() = vmRecipeId
 
 
     fun setIsPerformingQuery(isPerformingQuery : Boolean) {

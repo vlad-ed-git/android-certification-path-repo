@@ -39,51 +39,60 @@ class RecipeDetailsActivity : BaseActivity() {
         recipeRank = findViewById(R.id.recipe_social_score)
         parentContainer = findViewById(R.id.parent_container)
 
-        subscribeObservers()
 
+        toggleProgressBar(true)
         if(intent.hasExtra(RECIPE_INTENT)){
             val recipe =  intent.getParcelableExtra<Recipe>(RECIPE_INTENT)
             recipe?.let {
                 theRecipe = it
                 recipeDetailsViewModel.searchRecipeByIdApi(recipeId = theRecipe.recipe_id)
-                toggleProgressBar(true)
+
             }
         }
+        subscribeObservers()
     }
 
     private fun subscribeObservers(){
-        recipeDetailsViewModel.getRecipe().observe(this, Observer { recipe ->
+        recipeDetailsViewModel.getRecipe().observe(this, Observer { fetchedRecipe ->
 
-            recipeDetailsViewModel.setIsPerformingQuery(false)
-            toggleProgressBar(false)
+            if (fetchedRecipe != null){
+                //we make sure that the recipe that this observer is showing us
+                //is not the one it saved before the search request is made
+                //from when we previously run this activity
+                //DO NOT DISPLAY PREV VM CACHED RECIPE
+                if (recipeDetailsViewModel.getRecipeId()
+                    == fetchedRecipe.recipe_id
+                ) {
+                    theRecipe = fetchedRecipe
+                    displayTheRecipe()
+                }
 
-            if(recipe == null){
-                //will show details from the one from intent
+            }else{
+                //display the passed info from intent
+                displayTheRecipe()
                 Toast.makeText(
                     this,
                     R.string.couldnt_load_ingredients,
                     Toast.LENGTH_LONG
                 ).show()
-
-            }else{
-                //set the returned data
-                theRecipe = recipe
-                //todo display ingredients
-                setIngredients()
             }
 
-            Glide.with(this).load(theRecipe.image_url).placeholder(R.drawable.placeholder).into(recipeImageView)
-            parentContainer.visibility = View.VISIBLE
-            recipeTitle.text = theRecipe.title
-            recipeRank.text = theRecipe.social_rank.toString()
 
         })
     }
+    
+    private fun displayTheRecipe(){
+       recipeDetailsViewModel.setIsPerformingQuery(false)
+        Glide.with(this).load(theRecipe.image_url).placeholder(R.drawable.placeholder).into(recipeImageView)
+        recipeTitle.text = theRecipe.title
+        recipeRank.text = theRecipe.social_rank.toString()
+        setIngredients()
+        parentContainer.visibility = View.VISIBLE
+        toggleProgressBar( false)
 
-    override fun onBackPressed() {
-        super.onBackPressed()
-        recipeDetailsViewModel.cancelGetRecipeRequest()
     }
+
+
 
     private fun setIngredients(){
         //remove any that were previously in there
@@ -102,6 +111,12 @@ class RecipeDetailsActivity : BaseActivity() {
             }
 
         }
+    }
+
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        recipeDetailsViewModel.cancelGetRecipeRequest()
     }
 
 }
