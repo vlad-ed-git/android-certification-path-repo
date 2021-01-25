@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dev_vlad.foodrecipes.adapters.RecipeRecyclerAdapter
 import com.dev_vlad.foodrecipes.interfaces.OnRecipeClickListener
 import com.dev_vlad.foodrecipes.util.MyLogger
+import com.dev_vlad.foodrecipes.util.VerticalSpacingItemDecorator
 import com.dev_vlad.foodrecipes.viewmodels.RecipeListViewModel
 
 class RecipeListActivity : BaseActivity() , OnRecipeClickListener {
@@ -40,13 +41,17 @@ class RecipeListActivity : BaseActivity() , OnRecipeClickListener {
         recipeRecyclerAdapter = RecipeRecyclerAdapter(
             this
         )
+        val verticalSpacingItemDecorator = VerticalSpacingItemDecorator(30)
+        recyclerView.addItemDecoration(verticalSpacingItemDecorator)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = recipeRecyclerAdapter
+
     }
 
     private fun subscribeToObservers(){
         recipeListViewModel.getRecipes().observe(this,
         Observer {  recipeList ->
+            recipeListViewModel.setIsViewingRecipes(true)
             if (recipeList == null){
                 MyLogger.logThis(LOG_TAG, "subscribeToObservers()" , "recipe list is null")
             }else{
@@ -92,5 +97,15 @@ class RecipeListActivity : BaseActivity() , OnRecipeClickListener {
         })
     }
 
+
+    override fun onBackPressed() {
+        if (recipeListViewModel.isViewingRecipes()){
+              recipeListViewModel.setIsViewingRecipes(false)
+             displaySearchCategories()
+        }else{
+            //they are viewing categories
+            super.onBackPressed()
+        }
+    }
 
 }

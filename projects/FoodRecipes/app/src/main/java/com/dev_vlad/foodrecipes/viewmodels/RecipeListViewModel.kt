@@ -13,7 +13,8 @@ class RecipeListViewModel : ViewModel() {
     private var isViewingRecipes = false
 
     fun getRecipes() : LiveData<ArrayList<Recipe>>{
-        return RecipeRepo.getRecipes()
+
+         return RecipeRepo.getRecipes()
     }
 
     fun searchRecipesApi(query:String, page:Int = 1){
