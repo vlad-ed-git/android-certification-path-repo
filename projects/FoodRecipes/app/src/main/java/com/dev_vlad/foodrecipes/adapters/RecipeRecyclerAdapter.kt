@@ -188,5 +188,20 @@ class RecipeRecyclerAdapter(
         notifyDataSetChanged()
     }
 
+    fun getClickedIfRecipeAtPos(position: Int): Recipe? {
+        var clickedRecipe : Recipe? = null
+        if(::recipeList.isInitialized){
+            clickedRecipe = recipeList[position]
+            if(     clickedRecipe.recipe_id != EXHAUSTED_INDICATOR_PLACEHOLDER &&
+                clickedRecipe.recipe_id != CATEGORY_INDICATOR_PLACEHOLDER
+                    && clickedRecipe.recipe_id != LOADING_INDICATOR_PLACEHOLDER){
+                    return clickedRecipe
+            }
+        }
+
+        return clickedRecipe
+
+    }
+
 
 }

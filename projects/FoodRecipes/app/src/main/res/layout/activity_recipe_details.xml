@@ -4,7 +4,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RecipeDetailsActivity">
+    tools:context=".RecipeDetailsActivity"
+    android:id="@+id/parent_container"
+    android:visibility="gone">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -34,16 +36,20 @@
             />
 
             <TextView
+                android:padding="@dimen/space_std"
+                android:text="@string/ingredients"
+                android:textColor="@color/black"
                 app:layout_constraintTop_toBottomOf="@id/recipe_title"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintWidth_percent=".8"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/body_txt_size"
+                android:textSize="@dimen/title_txt_size"
                 android:textStyle="bold"
                 android:id="@+id/ingredients_title"/>
 
             <TextView
+                android:padding="@dimen/space_std"
                 app:layout_constraintTop_toBottomOf="@id/recipe_title"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintWidth_percent=".2"
@@ -53,6 +59,16 @@
                 android:textColor="@color/red"
                 android:id="@+id/recipe_social_score"
                 android:gravity="end|center_vertical"/>
+
+            <LinearLayout
+                app:layout_constraintTop_toBottomOf="@id/ingredients_title"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/space_md"
+                android:orientation="vertical"
+                android:id="@+id/ingredients_container">
+            </LinearLayout>
 
 
 

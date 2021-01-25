@@ -6,7 +6,7 @@ import android.os.Parcelable
 data class Recipe(
     var title: String,
     var publisher: String,
-    var ingredients: Array<String>,
+    var ingredients: Array<String>?,
     var recipe_id: String,
     var image_url: String,
     var social_rank: Float
@@ -26,7 +26,7 @@ data class Recipe(
     constructor(parcel: Parcel) : this(
         parcel.readString()!!,
         parcel.readString()!!,
-        parcel.createStringArray()!!,
+        parcel.createStringArray(),
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readFloat()

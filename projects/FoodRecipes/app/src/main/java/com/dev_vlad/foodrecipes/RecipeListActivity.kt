@@ -1,5 +1,6 @@
 package com.dev_vlad.foodrecipes
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dev_vlad.foodrecipes.adapters.RecipeRecyclerAdapter
 import com.dev_vlad.foodrecipes.interfaces.OnRecipeClickListener
+import com.dev_vlad.foodrecipes.models.Recipe
 import com.dev_vlad.foodrecipes.util.MyLogger
 import com.dev_vlad.foodrecipes.util.VerticalSpacingItemDecorator
 import com.dev_vlad.foodrecipes.viewmodels.RecipeListViewModel
@@ -82,8 +84,14 @@ class RecipeListActivity : BaseActivity() , OnRecipeClickListener {
     }
 
 
-    override fun onRecipeClick(position: Int) {
-        MyLogger.logThis(LOG_TAG, "onRecipeClick" , ": clicked $position")
+    override fun onRecipeClick(clickedRecipePosition : Int) {
+        val clickedRecipe = recipeRecyclerAdapter.getClickedIfRecipeAtPos(clickedRecipePosition)
+        clickedRecipe?.let {
+            MyLogger.logThis(LOG_TAG, "onRecipeClick" , ": clicked $clickedRecipe")
+            startActivity(Intent(this, RecipeDetailsActivity::class.java).putExtra(RecipeDetailsActivity.RECIPE_INTENT, clickedRecipe))
+        }
+
+
     }
 
     override fun onRecipeCategoryClicked(category: String) {
