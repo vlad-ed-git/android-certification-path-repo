@@ -1,7 +1,6 @@
 package com.dev_vlad.foodrecipes.repositories
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.dev_vlad.foodrecipes.api.RecipeApiClient
 import com.dev_vlad.foodrecipes.models.Recipe
 
@@ -14,11 +13,20 @@ object RecipeRepo {
         return RecipeApiClient.getRecipes()
     }
 
+    fun getARecipe() : LiveData<Recipe> {
+        return RecipeApiClient.getRecipe()
+    }
+
     fun searchRecipesApi(query:String, page:Int = 1){
         currentQuery = query
         currentPage = page
         RecipeApiClient.searchRecipesApi(query, page)
     }
+
+    fun searchRecipeByIdApi(recipeId:String){
+        RecipeApiClient.searchRecipeByIdApi(recipeId = recipeId)
+    }
+
 
     fun fetchNextResults(){
         currentPage += 1
@@ -26,7 +34,11 @@ object RecipeRepo {
 
     }
 
-    fun cancelRequest(){
-        RecipeApiClient.cancelRequest()
+    fun cancelSearchRecipesRequest(){
+        RecipeApiClient.cancelSearchRecipesRequest()
+    }
+
+    fun cancelGetRecipeRequest() {
+        RecipeApiClient.cancelGetRecipeRequest()
     }
 }

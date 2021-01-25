@@ -4,6 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.dev_vlad.foodrecipes.AppExecutors
 import com.dev_vlad.foodrecipes.api.responses.RecipeSearchResponse
+import com.dev_vlad.foodrecipes.api.runnables.RetrieveARecipeRunnable
+import com.dev_vlad.foodrecipes.api.runnables.RetrieveRecipesRunnable
 import com.dev_vlad.foodrecipes.models.Recipe
 import com.dev_vlad.foodrecipes.util.Constants
 import com.dev_vlad.foodrecipes.util.Constants.NETWORK_TIMEOUT
@@ -17,15 +19,22 @@ import java.util.concurrent.TimeUnit
 object RecipeApiClient {
 
     //live-data
-    private val mutableRecipes : MutableLiveData<ArrayList<Recipe>> = MutableLiveData()
-
-
-    //a runnable for searching
-    private var retrieveRecipesRunnable : RetrieveRecipesRunnable? = null
+    val mutableRecipes : MutableLiveData<ArrayList<Recipe>> = MutableLiveData()
+    val mutableRecipe : MutableLiveData<Recipe> = MutableLiveData()
 
     fun getRecipes() : LiveData<ArrayList<Recipe>> {
         return mutableRecipes
     }
+
+    fun getRecipe() : LiveData<Recipe> {
+        return mutableRecipe
+    }
+
+
+    //a runnable for searching
+    private var retrieveRecipesRunnable : RetrieveRecipesRunnable? = null
+    private var retrieveRecipeRunnable : RetrieveARecipeRunnable? = null
+
 
     fun searchRecipesApi(query: String, page: Int){
 
@@ -49,80 +58,41 @@ object RecipeApiClient {
        )
     }
 
-    fun cancelRequest() {
+
+
+    fun searchRecipeByIdApi(recipeId : String){
+
+        //create a recipe runnable
+        if (retrieveRecipeRunnable != null)
+            retrieveRecipeRunnable = null //should be null to start a new runnable
+
+        retrieveRecipeRunnable = RetrieveARecipeRunnable(
+            recipeId = recipeId
+        )
+
+        //submit to background
+        val handler = AppExecutors.getNetworkIO().submit(retrieveRecipeRunnable!!)
+
+        //cancel the handler task after set timeout
+        AppExecutors.getNetworkIO().schedule(
+            Runnable {
+                //TODO let user know when the request timed out
+                handler.cancel(true)
+            }, NETWORK_TIMEOUT, TimeUnit.MILLISECONDS
+        )
+    }
+
+    fun cancelSearchRecipesRequest() {
         if(retrieveRecipesRunnable != null){
             retrieveRecipesRunnable?.cancelRequest()
         }
     }
 
-    //the background task(s) that access the network
-  private class RetrieveRecipesRunnable(
-      private var searchQuery: String, private var pageNumber: Int, var cancelRequest : Boolean = false
-  ) : Runnable{
-
-      private val LOG_TAG = RetrieveRecipesRunnable::class.java.simpleName
-
-      override fun run() {
-        try {
-            val response = getRecipesFromServer(searchQuery, pageNumber)?.execute()
-            //check if user has cancelled Request
-            if(cancelRequest){
-                MyLogger.logThis(LOG_TAG, "run", "cancelling request...", )
-                return
-            }
-
-            when{
-
-                response == null -> {
-                    MyLogger.logThis(LOG_TAG, "run","response is null")
-                    mutableRecipes.postValue(null)
-                }
-
-                response.code() == 200 -> {
-                    MyLogger.logThis(LOG_TAG, "run","response is successful")
-                    val recipeListFetched = (response.body() as RecipeSearchResponse).recipes
-                    if (pageNumber == 1){
-                        //using postValue not setValue because we are in a background thread
-                        mutableRecipes.postValue(recipeListFetched as ArrayList<Recipe>?)
-                    }else{
-                        //append not set
-                        val currentRecipes = mutableRecipes.value
-                        currentRecipes?.addAll(recipeListFetched)
-                    }
-
-
-                }
-
-                else -> {
-                    MyLogger.logThis(LOG_TAG, "run","response returned code ${response.code()} : ${response.errorBody()}")
-                    //to let user know that an error occurred
-                    mutableRecipes.postValue(null)
-                }
-
-            }
-
-
-        } catch (e : IOException){
-            MyLogger.logThis(LOG_TAG, "run", "caught exception : ${e.message}", e)
-            //to let user know that an error occurred
-            mutableRecipes.postValue(null)
+    fun cancelGetRecipeRequest() {
+        if(retrieveRecipeRunnable != null){
+            retrieveRecipeRunnable?.cancelRequest()
         }
-      }
-
-      //returns the retrofit call object to be enqueued -- or executed by run in this case
-      private fun getRecipesFromServer(query: String, page: Int): Call<RecipeSearchResponse?>? {
-          return ServiceGenerator.getRecipeApi().searchRecipe(
-              Constants.API_KEY,
-              query = query,
-              page = page.toString()
-          )
-      }
-
-      fun cancelRequest(){
-          MyLogger.logThis(LOG_TAG, location = "cancelRequest()", msg = "User cancelled request")
-          cancelRequest = true
-      }
+    }
 
 
-  }
 }
