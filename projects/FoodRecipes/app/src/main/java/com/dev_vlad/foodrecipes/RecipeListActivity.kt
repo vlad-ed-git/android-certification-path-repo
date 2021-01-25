@@ -1,7 +1,10 @@
 package com.dev_vlad.foodrecipes
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.widget.SearchView
+import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,6 +28,7 @@ class RecipeListActivity : BaseActivity() , OnRecipeClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recipe_list)
+        setSupportActionBar(findViewById<Toolbar>(R.id.toolbar))
         recyclerView = findViewById(R.id.recipe_rv)
         recipeListViewModel = ViewModelProvider(this).get(RecipeListViewModel::class.java)
 
@@ -46,7 +50,22 @@ class RecipeListActivity : BaseActivity() , OnRecipeClickListener {
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = recipeRecyclerAdapter
 
+        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener(){
+            override fun onScrollStateChanged(rv: RecyclerView, newState: Int) {
+               if(!recyclerView.canScrollVertically(1)){
+                   //this if will trigger if it is at the bottom
+                   recipeListViewModel.searchNextPage()
+                   MyLogger.logThis(
+                           LOG_TAG,
+                           "onScrollStateChanged()",
+                           "loading for more"
+                   )
+               }
+            }
+        })
     }
+
+
 
     private fun subscribeToObservers(){
         recipeListViewModel.getRecipes().observe(this,
@@ -114,6 +133,23 @@ class RecipeListActivity : BaseActivity() , OnRecipeClickListener {
             //they are viewing categories
             super.onBackPressed()
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.recipe_search_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.action_categories){
+            if (recipeListViewModel.isPerformingQuery()){
+                //cancel query
+                recipeListViewModel.cancelRequest()
+            }
+            displaySearchCategories()
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 
 }

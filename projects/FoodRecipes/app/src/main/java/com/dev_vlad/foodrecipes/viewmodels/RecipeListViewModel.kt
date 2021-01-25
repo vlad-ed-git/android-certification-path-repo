@@ -3,12 +3,18 @@ package com.dev_vlad.foodrecipes.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.dev_vlad.foodrecipes.RecipeListActivity
 import com.dev_vlad.foodrecipes.api.RecipeApiClient
 import com.dev_vlad.foodrecipes.api.responses.RecipeResponse
 import com.dev_vlad.foodrecipes.models.Recipe
 import com.dev_vlad.foodrecipes.repositories.RecipeRepo
+import com.dev_vlad.foodrecipes.util.MyLogger
 
 class RecipeListViewModel : ViewModel() {
+
+    companion object{
+        private val LOG_TAG =  RecipeListViewModel::class.java.simpleName
+    }
 
     private var isViewingRecipes = false
     private var isPerformingQuery = false
@@ -21,6 +27,17 @@ class RecipeListViewModel : ViewModel() {
         this.isViewingRecipes =  true
         this.isPerformingQuery = true
         RecipeRepo.searchRecipesApi(query, page)
+    }
+
+    fun searchNextPage(){
+        if(!isPerformingQuery && isViewingRecipes) {
+            RecipeRepo.fetchNextResults()
+            MyLogger.logThis(
+                    LOG_TAG,
+                    "searchNextPage()",
+                    "loading for more"
+            )
+        }
     }
 
     fun setIsViewingRecipes(isViewingRecipes : Boolean) {

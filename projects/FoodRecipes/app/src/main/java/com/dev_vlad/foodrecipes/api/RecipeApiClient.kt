@@ -38,7 +38,7 @@ object RecipeApiClient {
         )
 
         //submit to background
-        val handler = AppExecutors.getNetworkIO().submit(retrieveRecipesRunnable)
+        val handler = AppExecutors.getNetworkIO().submit(retrieveRecipesRunnable!!)
 
         //cancel the handler task after set timeout
        AppExecutors.getNetworkIO().schedule(
@@ -67,6 +67,7 @@ object RecipeApiClient {
             val response = getRecipesFromServer(searchQuery, pageNumber)?.execute()
             //check if user has cancelled Request
             if(cancelRequest){
+                MyLogger.logThis(LOG_TAG, "run", "cancelling request...", )
                 return
             }
 
@@ -74,6 +75,7 @@ object RecipeApiClient {
 
                 response == null -> {
                     MyLogger.logThis(LOG_TAG, "run","response is null")
+                    mutableRecipes.postValue(null)
                 }
 
                 response.code() == 200 -> {

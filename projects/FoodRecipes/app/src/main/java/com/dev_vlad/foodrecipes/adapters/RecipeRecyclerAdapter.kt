@@ -27,8 +27,9 @@ class RecipeRecyclerAdapter(
         private const val RECIPE_TYPE = 1
         private const val LOADING_TYPE = 2
         private const val CATEGORY_TYPE = 3
-        const val LOADING_TITLE_PLACEHOLDER = "LOADING..."
-        const val CATEGORY_TITLE_PLACEHOLDER = "CATEGORY..."
+        const val LOADING_INDICATOR_PLACEHOLDER = "LOADING..."
+        const val CATEGORY_INDICATOR_PLACEHOLDER = "CATEGORY..."
+        const val EXHAUSTED_INDICATOR_PLACEHOLDER = "EXHAUSTED..."
     }
 
     private lateinit var recipeList : List<Recipe>
@@ -95,7 +96,7 @@ class RecipeRecyclerAdapter(
             val recipeCategory = recipeList[position]
             val path : Uri =
                     Uri.parse("android.resource://${holder.itemView.context.packageName}/raw/${recipeCategory.image_url}" )
-            MyLogger.logThis(LOG_TAG, "onBindViewHolder()", "path : $path")
+
             Glide.with(holder.itemView.context)
                     .load(path)
                     .circleCrop()
@@ -106,14 +107,30 @@ class RecipeRecyclerAdapter(
 
     //since we have multiple types
     override fun getItemViewType(position: Int): Int {
-        return when (recipeList[position].recipe_id) {
+        return when  {
 
-            LOADING_TITLE_PLACEHOLDER -> {
+            recipeList[position].recipe_id == LOADING_INDICATOR_PLACEHOLDER -> {
                 LOADING_TYPE
             }
-            CATEGORY_TITLE_PLACEHOLDER -> {
+            recipeList[position].recipe_id == CATEGORY_INDICATOR_PLACEHOLDER -> {
                 CATEGORY_TYPE
             }
+
+            (::recipeList.isInitialized) &&
+                    (position == recipeList.size - 1) &&
+                    (position != 0) &&
+                    (recipeList[position].recipe_id != EXHAUSTED_INDICATOR_PLACEHOLDER) -> {
+                        //if we are at the end of the list
+                        // and we are not at 0 i.e. empty list
+                        // and not reached end of results
+                    MyLogger.logThis(
+                            LOG_TAG,
+                            "getItemViewType()",
+                            "loading for more"
+                    )
+                        LOADING_TYPE
+                    }
+
             else -> {
                 RECIPE_TYPE
             }
@@ -129,7 +146,7 @@ class RecipeRecyclerAdapter(
     fun displayLoading(){
         if (!isLoading()){
             MyLogger.logThis(LOG_TAG, "displayLoading()", "set loading placeholder recipe data")
-            val recipe = Recipe(LOADING_TITLE_PLACEHOLDER)
+            val recipe = Recipe(LOADING_INDICATOR_PLACEHOLDER)
             val loadingList = arrayListOf<Recipe>()
             loadingList.add(recipe)
             recipeList = loadingList
@@ -141,7 +158,7 @@ class RecipeRecyclerAdapter(
 
         var isLoading = false
         if(::recipeList.isInitialized && recipeList.isNotEmpty()) {
-            isLoading =  (recipeList[recipeList.size - 1].equals(LOADING_TITLE_PLACEHOLDER))
+            isLoading =  (recipeList[recipeList.size - 1].equals(LOADING_INDICATOR_PLACEHOLDER))
         }
         MyLogger.logThis(LOG_TAG, "isLoading()", "status $isLoading")
         return isLoading
@@ -150,7 +167,7 @@ class RecipeRecyclerAdapter(
     fun displaySearchCategories(){
         val recipeCategoryList = arrayListOf<Recipe>()
         for ((index, aRecipeCategory) in Constants.DEFAULT_SEARCH_CATEGORIES.withIndex()){
-             val recipeCategory = Recipe(recipe_id = CATEGORY_TITLE_PLACEHOLDER, title = aRecipeCategory, image_url = Constants.DEFAULT_SEARCH_CATEGORY_IMAGES[index])
+             val recipeCategory = Recipe(recipe_id = CATEGORY_INDICATOR_PLACEHOLDER, title = aRecipeCategory, image_url = Constants.DEFAULT_SEARCH_CATEGORY_IMAGES[index])
             recipeCategoryList.add(recipeCategory)
         }
         recipeList = recipeCategoryList

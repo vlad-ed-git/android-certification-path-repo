@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RecipeDetailsActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/img_height"
+            android:id="@+id/recipe_image"
+            android:scaleType="centerCrop" />
+
+        <TextView
+            app:layout_constraintTop_toBottomOf="@id/recipe_image"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:gravity="start|center_vertical"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/title_txt_size"
+            android:textColor="@color/black"
+            android:id="@+id/recipe_title"
+            android:padding="@dimen/space_std"
+            />
+
+            <TextView
+                app:layout_constraintTop_toBottomOf="@id/recipe_title"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintWidth_percent=".8"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/body_txt_size"
+                android:textStyle="bold"
+                android:id="@+id/ingredients_title"/>
+
+            <TextView
+                app:layout_constraintTop_toBottomOf="@id/recipe_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintWidth_percent=".2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/body_txt_size"
+                android:textColor="@color/red"
+                android:id="@+id/recipe_social_score"
+                android:gravity="end|center_vertical"/>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</ScrollView>
