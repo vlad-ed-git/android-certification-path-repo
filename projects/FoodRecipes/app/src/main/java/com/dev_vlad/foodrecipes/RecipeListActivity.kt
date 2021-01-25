@@ -21,7 +21,7 @@ class RecipeListActivity : BaseActivity() , OnRecipeClickListener {
     private lateinit var recipeListViewModel : RecipeListViewModel
     private lateinit var recyclerView: RecyclerView
     private lateinit var recipeRecyclerAdapter: RecipeRecyclerAdapter
-
+    private lateinit var searchView : SearchView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recipe_list)
@@ -52,6 +52,7 @@ class RecipeListActivity : BaseActivity() , OnRecipeClickListener {
         recipeListViewModel.getRecipes().observe(this,
         Observer {  recipeList ->
             recipeListViewModel.setIsViewingRecipes(true)
+            recipeListViewModel.setIsPerformingQuery(false)
             if (recipeList == null){
                 MyLogger.logThis(LOG_TAG, "subscribeToObservers()" , "recipe list is null")
             }else{
@@ -70,6 +71,7 @@ class RecipeListActivity : BaseActivity() , OnRecipeClickListener {
         MyLogger.logThis(LOG_TAG, "onRecipeCategoryClicked" , " $category")
         recipeRecyclerAdapter.displayLoading()
         recipeListViewModel.searchRecipesApi(category, page = 1)
+        searchView.clearFocus()
     }
 
     private fun displaySearchCategories(){
@@ -79,12 +81,14 @@ class RecipeListActivity : BaseActivity() , OnRecipeClickListener {
 
     /*********** SEARCH VIEW  **/
     private fun initSearchView(){
-       val searchView : SearchView = findViewById(R.id.search_view)
+       searchView  = findViewById(R.id.search_view)
+
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
                 query?.let {
                     recipeRecyclerAdapter.displayLoading()
                     recipeListViewModel.searchRecipesApi(it, page = 1)
+                    searchView.clearFocus()//so when user presses back button, that event is not consumed by this focus
                     MyLogger.logThis(LOG_TAG, "onQueryTextSubmit", "query : $query" )
                 }
                 return false;
@@ -99,6 +103,10 @@ class RecipeListActivity : BaseActivity() , OnRecipeClickListener {
 
 
     override fun onBackPressed() {
+        if (recipeListViewModel.isPerformingQuery()){
+            //cancel query
+            recipeListViewModel.cancelRequest()
+        }
         if (recipeListViewModel.isViewingRecipes()){
               recipeListViewModel.setIsViewingRecipes(false)
              displaySearchCategories()

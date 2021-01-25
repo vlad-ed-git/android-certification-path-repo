@@ -49,7 +49,13 @@ object RecipeApiClient {
        )
     }
 
-  //the background task(s) that access the network
+    fun cancelRequest() {
+        if(retrieveRecipesRunnable != null){
+            retrieveRecipesRunnable?.cancelRequest()
+        }
+    }
+
+    //the background task(s) that access the network
   private class RetrieveRecipesRunnable(
       private var searchQuery: String, private var pageNumber: Int, var cancelRequest : Boolean = false
   ) : Runnable{
@@ -110,7 +116,7 @@ object RecipeApiClient {
           )
       }
 
-      private fun cancelRequest(){
+      fun cancelRequest(){
           MyLogger.logThis(LOG_TAG, location = "cancelRequest()", msg = "User cancelled request")
           cancelRequest = true
       }

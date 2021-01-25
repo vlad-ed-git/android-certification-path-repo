@@ -11,14 +11,15 @@ import com.dev_vlad.foodrecipes.repositories.RecipeRepo
 class RecipeListViewModel : ViewModel() {
 
     private var isViewingRecipes = false
+    private var isPerformingQuery = false
 
     fun getRecipes() : LiveData<ArrayList<Recipe>>{
-
          return RecipeRepo.getRecipes()
     }
 
     fun searchRecipesApi(query:String, page:Int = 1){
         this.isViewingRecipes =  true
+        this.isPerformingQuery = true
         RecipeRepo.searchRecipesApi(query, page)
     }
 
@@ -27,5 +28,16 @@ class RecipeListViewModel : ViewModel() {
     }
 
     fun isViewingRecipes() = isViewingRecipes
+
+    fun setIsPerformingQuery(isPerformingQuery : Boolean) {
+        this.isPerformingQuery= isPerformingQuery
+    }
+
+    fun isPerformingQuery() = isPerformingQuery
+
+    fun cancelRequest(){
+        RecipeRepo.cancelRequest()
+        isPerformingQuery = false
+    }
 
 }

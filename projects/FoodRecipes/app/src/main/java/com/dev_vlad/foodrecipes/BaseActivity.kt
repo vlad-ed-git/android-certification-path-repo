@@ -8,7 +8,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 
 
 //an abstract class
-abstract class BaseActivity : AppCompatActivity() {
+abstract class  BaseActivity : AppCompatActivity() {
 
     private lateinit var progressBar: ProgressBar
 
