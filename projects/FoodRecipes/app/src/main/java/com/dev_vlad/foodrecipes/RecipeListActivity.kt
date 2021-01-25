@@ -30,6 +30,9 @@ class RecipeListActivity : BaseActivity() , OnRecipeClickListener {
         initRecycler()
         subscribeToObservers()
         initSearchView()
+        if (!recipeListViewModel.isViewingRecipes()){
+            displaySearchCategories()
+        }
     }
 
 
@@ -60,6 +63,12 @@ class RecipeListActivity : BaseActivity() , OnRecipeClickListener {
 
     override fun onRecipeCategoryClicked(category: String) {
         MyLogger.logThis(LOG_TAG, "onRecipeCategoryClicked" , " $category")
+        recipeRecyclerAdapter.displayLoading()
+        recipeListViewModel.searchRecipesApi(category, page = 1)
+    }
+
+    private fun displaySearchCategories(){
+        recipeRecyclerAdapter.displaySearchCategories()
     }
 
 
@@ -82,5 +91,6 @@ class RecipeListActivity : BaseActivity() , OnRecipeClickListener {
 
         })
     }
+
 
 }

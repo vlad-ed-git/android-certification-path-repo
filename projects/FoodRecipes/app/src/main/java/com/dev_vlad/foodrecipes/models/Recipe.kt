@@ -12,14 +12,14 @@ data class Recipe(
     var social_rank: Float
 ) : Parcelable {
 
-    //empty constructor with just title
-    //used only as loading placeholder --see recycler adapter
-    constructor(title: String) : this (
+    //empty constructor with just recipe_id
+    //used only as loading placeholder or category kind --see recycler adapter
+    constructor(recipe_id: String, title: String = "", image_url: String = "") : this (
                 title,
                 "",
                 arrayOf(),
-                "",
-                "",
+                recipe_id,
+                image_url,
                 0f
             )
 

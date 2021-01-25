@@ -2,4 +2,5 @@
     <string name="app_name">FoodRecipes</string>
     <string name="recipe_image_content_description">Recipe Image</string>
     <string name="search_recipe_hint">search recipe</string>
+    <string name="recipe_category_image_desc">Recipe Category Image</string>
 </resources>
