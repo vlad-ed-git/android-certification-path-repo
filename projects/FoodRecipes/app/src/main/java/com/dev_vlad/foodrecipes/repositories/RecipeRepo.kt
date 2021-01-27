@@ -38,7 +38,7 @@ object RecipeRepo {
         if(recipes == null){
             isSearchQueryExhausted.value = true
         }
-        else if(recipes.size < Constants.MAX_RESULTS_PAGE) {
+        else if(recipes.size % Constants.MAX_RESULTS_PAGE != 0 ) {
             isSearchQueryExhausted.value = true
         }
 

@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dev_vlad.foodrecipes.R
 import com.dev_vlad.foodrecipes.adapters.viewholders.LoadingViewHolder
+import com.dev_vlad.foodrecipes.adapters.viewholders.NoMoreRecipeCategoryViewHolder
 import com.dev_vlad.foodrecipes.adapters.viewholders.RecipeCategoryViewHolder
 import com.dev_vlad.foodrecipes.adapters.viewholders.RecipeViewHolder
 import com.dev_vlad.foodrecipes.interfaces.OnRecipeClickListener
@@ -27,9 +28,11 @@ class RecipeRecyclerAdapter(
         private const val RECIPE_TYPE = 1
         private const val LOADING_TYPE = 2
         private const val CATEGORY_TYPE = 3
+        private const val EXHAUSTED_TYPE = 4
         const val LOADING_INDICATOR_PLACEHOLDER = "LOADING..."
         const val CATEGORY_INDICATOR_PLACEHOLDER = "CATEGORY..."
         const val EXHAUSTED_INDICATOR_PLACEHOLDER = "EXHAUSTED..."
+
     }
 
     private lateinit var recipeList : List<Recipe>
@@ -58,6 +61,18 @@ class RecipeRecyclerAdapter(
                 )
                 return RecipeCategoryViewHolder(view, clickListener)
             }
+
+            EXHAUSTED_TYPE -> {
+                val view  =   LayoutInflater.from(
+                        parent.context,
+                ).inflate(
+                        R.layout.no_more_recipes_item,
+                        parent,
+                        false
+                )
+                return NoMoreRecipeCategoryViewHolder(view)
+            }
+
 
             else -> {
                 //default is RECIPE_TYPE
@@ -109,6 +124,10 @@ class RecipeRecyclerAdapter(
     override fun getItemViewType(position: Int): Int {
         return when  {
 
+            recipeList[position].recipe_id == EXHAUSTED_INDICATOR_PLACEHOLDER -> {
+                EXHAUSTED_TYPE
+            }
+
             recipeList[position].recipe_id == LOADING_INDICATOR_PLACEHOLDER -> {
                 LOADING_TYPE
             }
@@ -145,8 +164,8 @@ class RecipeRecyclerAdapter(
      */
     fun displayLoading(){
         if (!isLoading()){
-            MyLogger.logThis(LOG_TAG, "displayLoading()", "set loading placeholder recipe data")
-            val recipe = Recipe(LOADING_INDICATOR_PLACEHOLDER)
+
+            val recipe = Recipe(recipe_id = LOADING_INDICATOR_PLACEHOLDER)
             val loadingList = arrayListOf<Recipe>()
             loadingList.add(recipe)
             recipeList = loadingList
@@ -160,7 +179,7 @@ class RecipeRecyclerAdapter(
         if(::recipeList.isInitialized && recipeList.isNotEmpty()) {
             isLoading =  (recipeList[recipeList.size - 1].equals(LOADING_INDICATOR_PLACEHOLDER))
         }
-        MyLogger.logThis(LOG_TAG, "isLoading()", "status $isLoading")
+
         return isLoading
     }
 
@@ -175,6 +194,27 @@ class RecipeRecyclerAdapter(
 
 
     }
+
+    fun displayExhaustedQuery() {
+        hideLoading()
+        val recipe = Recipe(recipe_id = EXHAUSTED_INDICATOR_PLACEHOLDER)
+        val exhaustedRecipeList = arrayListOf<Recipe>()
+          exhaustedRecipeList.addAll(recipeList)
+                  exhaustedRecipeList.add(recipe)
+        recipeList = exhaustedRecipeList
+        notifyDataSetChanged()
+    }
+
+    private fun hideLoading(){
+        if(::recipeList.isInitialized && isLoading()){
+           val nonLoadingList =  recipeList.filter {
+                recipe -> recipe.recipe_id != LOADING_INDICATOR_PLACEHOLDER
+            }
+           recipeList = nonLoadingList
+           notifyDataSetChanged()
+        }
+    }
+
 
     override fun getItemCount(): Int {
         return if(::recipeList.isInitialized)
@@ -202,6 +242,7 @@ class RecipeRecyclerAdapter(
         return clickedRecipe
 
     }
+
 
 
 }

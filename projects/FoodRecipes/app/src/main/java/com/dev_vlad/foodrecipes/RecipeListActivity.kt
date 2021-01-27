@@ -99,7 +99,7 @@ class RecipeListActivity : BaseActivity() , OnRecipeClickListener {
                 this, {
                     hasSearchQueryExhausted ->
                if(hasSearchQueryExhausted){
-                   Log.d(LOG_TAG, "Exhausted query")
+                   recipeRecyclerAdapter.displayExhaustedQuery()
                }
         })
     }
