@@ -17,6 +17,14 @@ object RecipeRepo {
         return RecipeApiClient.getRecipe()
     }
 
+    fun hasRecipesRequestTimeout() : LiveData<Boolean> {
+        return RecipeApiClient.hasRecipesRequestTimeout()
+    }
+
+    fun hasRecipeRequestTimeout() : LiveData<Boolean> {
+        return RecipeApiClient.hasRecipeRequestTimeout()
+    }
+
     fun searchRecipesApi(query:String, page:Int = 1){
         currentQuery = query
         currentPage = page

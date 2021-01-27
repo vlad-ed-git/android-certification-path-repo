@@ -14,9 +14,15 @@ class RecipeListViewModel : ViewModel() {
 
     private var isViewingRecipes = false
     private var isPerformingQuery = false
+    //to know if the timeout error should be displayed
+    var recipesRetrievedSuccessfully = false
 
     fun getRecipes() : LiveData<ArrayList<Recipe>>{
          return RecipeRepo.getRecipes()
+    }
+
+    fun hasRecipesRequestTimeout() : LiveData<Boolean> {
+        return RecipeRepo.hasRecipesRequestTimeout()
     }
 
     fun searchRecipesApi(query:String, page:Int = 1){

@@ -12,4 +12,5 @@
     <string name="hello_world">Hello Square World!</string>
     <string name="ingredients">Ingredients</string>
     <string name="couldnt_load_ingredients">Failed to load ingredients!</string>
+    <string name="internet_problem_txt">Make sure you are connected to the internet!</string>
 </resources>

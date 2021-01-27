@@ -21,6 +21,8 @@ object RecipeApiClient {
     //live-data
     val mutableRecipes : MutableLiveData<ArrayList<Recipe>> = MutableLiveData()
     val mutableRecipe : MutableLiveData<Recipe> = MutableLiveData()
+    private val getRecipeRequestTimeout : MutableLiveData<Boolean> = MutableLiveData(false)
+    private val getRecipesRequestTimeout : MutableLiveData<Boolean> = MutableLiveData(false)
 
     fun getRecipes() : LiveData<ArrayList<Recipe>> {
         return mutableRecipes
@@ -30,6 +32,13 @@ object RecipeApiClient {
         return mutableRecipe
     }
 
+    fun hasRecipesRequestTimeout() : LiveData<Boolean> {
+        return getRecipesRequestTimeout
+    }
+
+    fun hasRecipeRequestTimeout() : LiveData<Boolean> {
+        return getRecipeRequestTimeout
+    }
 
     //a runnable for searching
     private var retrieveRecipesRunnable : RetrieveRecipesRunnable? = null
@@ -49,10 +58,13 @@ object RecipeApiClient {
         //submit to background
         val handler = AppExecutors.getNetworkIO().submit(retrieveRecipesRunnable!!)
 
+        //make sure this is off
+        getRecipesRequestTimeout.postValue(false)
         //cancel the handler task after set timeout
        AppExecutors.getNetworkIO().schedule(
            Runnable {
-               //TODO let user know when the request timed out
+               //let user know when the request timed out
+               getRecipesRequestTimeout.postValue(true)
                handler.cancel(true)
            }, NETWORK_TIMEOUT, TimeUnit.MILLISECONDS
        )
@@ -73,10 +85,14 @@ object RecipeApiClient {
         //submit to background
         val handler = AppExecutors.getNetworkIO().submit(retrieveRecipeRunnable!!)
 
+        //make sure this is off
+        getRecipeRequestTimeout.postValue(false)
+
         //cancel the handler task after set timeout
         AppExecutors.getNetworkIO().schedule(
             Runnable {
-                //TODO let user know when the request timed out
+                // let user know when the request timed out
+                getRecipeRequestTimeout.postValue(true)
                 handler.cancel(true)
             }, NETWORK_TIMEOUT, TimeUnit.MILLISECONDS
         )

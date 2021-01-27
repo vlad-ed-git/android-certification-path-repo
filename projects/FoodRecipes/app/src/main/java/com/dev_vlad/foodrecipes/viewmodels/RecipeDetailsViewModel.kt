@@ -13,9 +13,15 @@ class RecipeDetailsViewModel : ViewModel() {
 
     private var isPerformingQuery = false
     private lateinit var vmRecipeId : String
+    //to know if the timeout error should be displayed
+    var recipeRetrievedSuccessfully = false
 
     fun getRecipe() : LiveData<Recipe> {
         return RecipeRepo.getARecipe()
+    }
+
+    fun hasRecipesRequestTimeout() : LiveData<Boolean> {
+        return RecipeRepo.hasRecipeRequestTimeout()
     }
 
     fun searchRecipeByIdApi(recipeId:String){

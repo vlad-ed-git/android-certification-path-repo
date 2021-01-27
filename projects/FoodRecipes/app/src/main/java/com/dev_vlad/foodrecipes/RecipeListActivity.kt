@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
@@ -16,6 +17,7 @@ import com.dev_vlad.foodrecipes.models.Recipe
 import com.dev_vlad.foodrecipes.util.MyLogger
 import com.dev_vlad.foodrecipes.util.VerticalSpacingItemDecorator
 import com.dev_vlad.foodrecipes.viewmodels.RecipeListViewModel
+import com.google.android.material.snackbar.Snackbar
 
 class RecipeListActivity : BaseActivity() , OnRecipeClickListener {
 
@@ -78,9 +80,19 @@ class RecipeListActivity : BaseActivity() , OnRecipeClickListener {
                 MyLogger.logThis(LOG_TAG, "subscribeToObservers()" , "recipe list is null")
             }else{
                 MyLogger.logThis(LOG_TAG, "subscribeToObservers()" , "${recipeList.size} recipes returned")
+                recipeListViewModel.recipesRetrievedSuccessfully = true
                 recipeRecyclerAdapter.setRecipes(recipeList)
             }
         })
+
+        recipeListViewModel.hasRecipesRequestTimeout().observe(
+                this, {
+                 requestTimedOut ->
+                if (requestTimedOut && !recipeListViewModel.recipesRetrievedSuccessfully){
+                    displaySnackBar(isError = true, msg_res_id =R.string.internet_problem_txt)
+                }
+        }
+        )
     }
 
 

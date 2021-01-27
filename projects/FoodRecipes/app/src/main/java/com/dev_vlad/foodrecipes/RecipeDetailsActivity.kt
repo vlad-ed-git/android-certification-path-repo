@@ -63,6 +63,7 @@ class RecipeDetailsActivity : BaseActivity() {
                 if (recipeDetailsViewModel.getRecipeId()
                     == fetchedRecipe.recipe_id
                 ) {
+                    recipeDetailsViewModel.recipeRetrievedSuccessfully = true
                     theRecipe = fetchedRecipe
                     displayTheRecipe()
                 }
@@ -79,6 +80,15 @@ class RecipeDetailsActivity : BaseActivity() {
 
 
         })
+
+        recipeDetailsViewModel.hasRecipesRequestTimeout().observe(
+                this, {
+                    requestTimedOut ->
+                    if(requestTimedOut && !recipeDetailsViewModel.recipeRetrievedSuccessfully){
+                        displaySnackBar(isError = true, msg_res_id =R.string.internet_problem_txt)
+                    }
+        }
+        )
     }
     
     private fun displayTheRecipe(){
