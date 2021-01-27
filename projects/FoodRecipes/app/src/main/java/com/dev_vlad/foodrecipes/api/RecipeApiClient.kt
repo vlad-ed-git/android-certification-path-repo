@@ -19,12 +19,12 @@ import java.util.concurrent.TimeUnit
 object RecipeApiClient {
 
     //live-data
-    val mutableRecipes : MutableLiveData<ArrayList<Recipe>> = MutableLiveData()
+    val mutableRecipes : MutableLiveData<ArrayList<Recipe>?> = MutableLiveData()
     val mutableRecipe : MutableLiveData<Recipe> = MutableLiveData()
     private val getRecipeRequestTimeout : MutableLiveData<Boolean> = MutableLiveData(false)
     private val getRecipesRequestTimeout : MutableLiveData<Boolean> = MutableLiveData(false)
 
-    fun getRecipes() : LiveData<ArrayList<Recipe>> {
+    fun getRecipes() : LiveData<ArrayList<Recipe>?> {
         return mutableRecipes
     }
 

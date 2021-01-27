@@ -17,9 +17,10 @@ class RecipeListViewModel : ViewModel() {
     //to know if the timeout error should be displayed
     var recipesRetrievedSuccessfully = false
 
-    fun getRecipes() : LiveData<ArrayList<Recipe>>{
+    fun getRecipes() : LiveData<List<Recipe>>{
          return RecipeRepo.getRecipes()
     }
+    fun hasSearchQueryExhausted(): LiveData<Boolean> = RecipeRepo.hasSearchQueryExhausted()
 
     fun hasRecipesRequestTimeout() : LiveData<Boolean> {
         return RecipeRepo.hasRecipesRequestTimeout()
@@ -32,7 +33,7 @@ class RecipeListViewModel : ViewModel() {
     }
 
     fun searchNextPage(){
-        if(!isPerformingQuery && isViewingRecipes) {
+        if(!isPerformingQuery && isViewingRecipes && !hasSearchQueryExhausted().value!!) {
             RecipeRepo.fetchNextResults()
             MyLogger.logThis(
                     LOG_TAG,

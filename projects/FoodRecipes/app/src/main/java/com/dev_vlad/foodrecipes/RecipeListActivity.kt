@@ -2,6 +2,7 @@ package com.dev_vlad.foodrecipes
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -93,6 +94,14 @@ class RecipeListActivity : BaseActivity() , OnRecipeClickListener {
                 }
         }
         )
+
+        recipeListViewModel.hasSearchQueryExhausted().observe(
+                this, {
+                    hasSearchQueryExhausted ->
+               if(hasSearchQueryExhausted){
+                   Log.d(LOG_TAG, "Exhausted query")
+               }
+        })
     }
 
 
