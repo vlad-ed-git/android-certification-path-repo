@@ -1,7 +1,8 @@
-package com.dev_vlad.blog
+package com.dev_vlad.blog.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.dev_vlad.blog.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
