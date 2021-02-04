@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">FoodRecipes</string>
+    <string name="recipe_image_content_description">Recipe Image</string>
+    <string name="search_recipe_hint">search recipe</string>
+    <string name="recipe_category_image_desc">Recipe Category Image</string>
+    <string name="categories">Categories</string>
+    <string name="title_activity_recipe_details">RecipeDetailsActivity</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <string name="hello_world">Hello Square World!</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="couldnt_load_ingredients">Failed to load ingredients!</string>
+    <string name="internet_problem_txt">Make sure you are connected to the internet!</string>
+    <string name="no_more_recipes_txt">No more recipes</string>
+</resources>
