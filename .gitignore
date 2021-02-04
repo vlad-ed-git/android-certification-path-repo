@@ -83,3 +83,7 @@ lint/generated/
 lint/outputs/
 lint/tmp/
 # lint/reports/
+
+# firebase
+projects/Blog/app/google-services.json
+google-services.json
