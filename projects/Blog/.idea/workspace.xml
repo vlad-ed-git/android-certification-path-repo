@@ -7,20 +7,66 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7ec0b4d7-77f5-4288-b733-ebe562d57c13" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/dev_vlad/blog/data_sources/models/Note.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/dev_vlad/blog/data_sources/models/NoteFactory.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/dev_vlad/blog/utils/DateUtil.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/font/inconsolata.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/font/inconsolata_bold.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/font/work_sans.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SellMyCar/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SellMyCar/.idea/$CACHE_FILE$" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SellMyCar/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SellMyCar/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SellMyCar/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SellMyCar/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SellMyCar/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SellMyCar/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SellMyCar/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SellMyCar/app/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SellMyCar/app/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SellMyCar/app/proguard-rules.pro" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SellMyCar/app/src/androidTest/java/com/dev_vlad/sell_my_car/ExampleInstrumentedTest.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SellMyCar/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SellMyCar/app/src/main/java/com/dev_vlad/sell_my_car/data_sources/models/Note.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SellMyCar/app/src/main/java/com/dev_vlad/sell_my_car/data_sources/models/NoteFactory.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SellMyCar/app/src/main/java/com/dev_vlad/sell_my_car/ui/MainActivity.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SellMyCar/app/src/main/java/com/dev_vlad/sell_my_car/utils/DateUtil.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SellMyCar/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SellMyCar/app/src/main/res/drawable/ic_launcher_background.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SellMyCar/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SellMyCar/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SellMyCar/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SellMyCar/app/src/main/res/mipmap-hdpi/ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SellMyCar/app/src/main/res/mipmap-hdpi/ic_launcher_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SellMyCar/app/src/main/res/mipmap-mdpi/ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SellMyCar/app/src/main/res/mipmap-mdpi/ic_launcher_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SellMyCar/app/src/main/res/mipmap-xhdpi/ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SellMyCar/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SellMyCar/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SellMyCar/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SellMyCar/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SellMyCar/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SellMyCar/app/src/main/res/values-night/themes.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SellMyCar/app/src/main/res/values/colors.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SellMyCar/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SellMyCar/app/src/main/res/values/themes.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SellMyCar/app/src/test/java/com/dev_vlad/sell_my_car/ExampleUnitTest.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SellMyCar/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SellMyCar/gradle.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SellMyCar/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SellMyCar/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SellMyCar/gradlew" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SellMyCar/gradlew.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SellMyCar/settings.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/dev_vlad/blog/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/dev_vlad/blog/ui/MainActivity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values-night/themes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values-night/themes.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/themes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/themes.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[di5pmv5xciono7z9]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -61,6 +107,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Kotlin Object" />
+        <option value="Kotlin Class" />
       </list>
     </option>
   </component>
@@ -221,22 +268,30 @@
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state x="420" y="137" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog/0.0.1280.689@0.0.1280.689" timestamp="1612464582199" />
-    <state width="594" height="144" key="GridCell.Tab.0.bottom" timestamp="1612465136196">
+    <state x="321" y="100" key="Downloadable.Font.Dialog.Size" timestamp="1612466541490">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="594" height="144" key="GridCell.Tab.0.bottom/0.0.1280.689@0.0.1280.689" timestamp="1612465136196" />
-    <state width="594" height="144" key="GridCell.Tab.0.center" timestamp="1612465136196">
+    <state x="321" y="100" key="Downloadable.Font.Dialog.Size/0.0.1280.689@0.0.1280.689" timestamp="1612466541490" />
+    <state x="421" y="100" key="FileChooserDialogImpl" timestamp="1612466168904">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="594" height="144" key="GridCell.Tab.0.center/0.0.1280.689@0.0.1280.689" timestamp="1612465136196" />
-    <state width="594" height="144" key="GridCell.Tab.0.left" timestamp="1612465136196">
+    <state x="421" y="100" key="FileChooserDialogImpl/0.0.1280.689@0.0.1280.689" timestamp="1612466168904" />
+    <state width="1236" height="144" key="GridCell.Tab.0.bottom" timestamp="1612466250548">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="594" height="144" key="GridCell.Tab.0.left/0.0.1280.689@0.0.1280.689" timestamp="1612465136196" />
-    <state width="594" height="144" key="GridCell.Tab.0.right" timestamp="1612465136196">
+    <state width="1236" height="144" key="GridCell.Tab.0.bottom/0.0.1280.689@0.0.1280.689" timestamp="1612466250548" />
+    <state width="1236" height="144" key="GridCell.Tab.0.center" timestamp="1612466250548">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="594" height="144" key="GridCell.Tab.0.right/0.0.1280.689@0.0.1280.689" timestamp="1612465136196" />
+    <state width="1236" height="144" key="GridCell.Tab.0.center/0.0.1280.689@0.0.1280.689" timestamp="1612466250548" />
+    <state width="1236" height="144" key="GridCell.Tab.0.left" timestamp="1612466250547">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state width="1236" height="144" key="GridCell.Tab.0.left/0.0.1280.689@0.0.1280.689" timestamp="1612466250547" />
+    <state width="1236" height="144" key="GridCell.Tab.0.right" timestamp="1612466250548">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state width="1236" height="144" key="GridCell.Tab.0.right/0.0.1280.689@0.0.1280.689" timestamp="1612466250548" />
     <state x="142" y="0" key="SettingsEditor" timestamp="1612461461151">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
