@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Sell My Car</string>
+    <string name="null_data_cache_error">Cache data is empty</string>
+    <string name="timeout_cache_error">Cache request timed out</string>
+    <string name="cache_error">An error occurred accessing the cache</string>
+    <string name="unknown_cache_error">An unknown cache error occurred</string>
 </resources>
