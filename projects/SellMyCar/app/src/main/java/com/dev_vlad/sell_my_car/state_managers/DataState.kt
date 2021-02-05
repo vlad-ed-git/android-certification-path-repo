@@ -1,7 +1,5 @@
 package com.dev_vlad.sell_my_car.state_managers
 
-import Response
-import StateMessage
 
 data class DataState<T>(
   var stateMessage: StateMessage? = null,
