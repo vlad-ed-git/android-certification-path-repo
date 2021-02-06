@@ -7,7 +7,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="075f8576-a083-4b61-8874-ca9541d57001" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/dev_vlad/sell_my_car/data_sources/NoteDaoService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/dev_vlad/sell_my_car/data_sources/local/CarDaoService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/dev_vlad/sell_my_car/data_sources/local/CacheResponseHandler.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/dev_vlad/sell_my_car/data_sources/local/CacheResponseHandler.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/dev_vlad/sell_my_car/data_sources/local/CarCache.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/dev_vlad/sell_my_car/data_sources/local/CarCache.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -15,7 +19,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[Pixel_4_API_23]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -78,15 +82,17 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="dart.analysis.tool.window.visible" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/java/com/dev_vlad/sell_my_car" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/java/com/dev_vlad/sell_my_car/data_sources/remote" />
     <property name="settings.editor.selected.configurable" value="preferences.language.Kotlin" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="com.dev_vlad.sell_my_car.data_sources.local" />
       <recent name="com.dev_vlad.sell_my_car.ui" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\little\Desktop\little\vlad\Work\mine\Learning\Android\2021_certification\android-certification-path-repo\projects\SellMyCar\app\src\main\java\com\dev_vlad\sell_my_car\data_sources\remote" />
       <recent name="C:\Users\little\Desktop\little\vlad\Work\mine\Learning\Android\2021_certification\android-certification-path-repo\projects\SellMyCar\app\src\main\java\com\dev_vlad\sell_my_car" />
     </key>
   </component>
@@ -222,18 +228,18 @@
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state x="371" y="92" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.689@0.0.1280.689" timestamp="1612540408298" />
-    <state x="420" y="137" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog" timestamp="1612538910835">
+    <state x="420" y="137" width="457" height="416" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog" timestamp="1612584716863">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="420" y="137" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog/0.0.1280.689@0.0.1280.689" timestamp="1612538910835" />
+    <state x="420" y="137" width="457" height="416" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog/0.0.1280.689@0.0.1280.689" timestamp="1612584716863" />
     <state x="0" y="100" key="AndroidCreateResourceFileDialog" timestamp="1612550308566">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state x="0" y="100" key="AndroidCreateResourceFileDialog/0.0.1280.689@0.0.1280.689" timestamp="1612550308566" />
-    <state x="165" y="135" key="AndroidCreateXmlResourceDialog" timestamp="1612553262744">
+    <state x="165" y="135" key="AndroidCreateXmlResourceDialog" timestamp="1612585459439">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="165" y="135" key="AndroidCreateXmlResourceDialog/0.0.1280.689@0.0.1280.689" timestamp="1612553262744" />
+    <state x="165" y="135" key="AndroidCreateXmlResourceDialog/0.0.1280.689@0.0.1280.689" timestamp="1612585459439" />
     <state x="421" y="100" key="FileChooserDialogImpl" timestamp="1612539649963">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
@@ -254,5 +260,9 @@
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state width="1236" height="158" key="GridCell.Tab.0.right/0.0.1280.689@0.0.1280.689" timestamp="1612539259287" />
+    <state x="33" y="48" width="587" height="592" key="find.popup" timestamp="1612585244804">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="33" y="48" width="587" height="592" key="find.popup/0.0.1280.689@0.0.1280.689" timestamp="1612585244804" />
   </component>
 </project>

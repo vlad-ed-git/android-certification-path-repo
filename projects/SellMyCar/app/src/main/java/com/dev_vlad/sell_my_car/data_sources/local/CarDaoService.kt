@@ -1,4 +1,4 @@
-package com.dev_vlad.sell_my_car.data_sources
+package com.dev_vlad.sell_my_car.data_sources.local
 
 import com.dev_vlad.sell_my_car.data_sources.models.Car
 
@@ -6,10 +6,10 @@ import com.dev_vlad.sell_my_car.data_sources.models.Car
 /* a layer inserted between room and local data source
 *** allows us to run unit tests which cannot access the room
 * as room is part of android framework
-*  so NoteDaoService allows us to fake it in a unit test
+*  so CarDaoService allows us to fake it in a unit test
 * while use android's room in actual app
  */
-object NoteDaoService {
+object CarDaoService {
     fun insertCar(car: Car): Long {
         TODO("Not yet implemented")
     }

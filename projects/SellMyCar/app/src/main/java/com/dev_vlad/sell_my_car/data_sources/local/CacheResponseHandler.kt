@@ -24,7 +24,7 @@ abstract class CacheResponseHandler<ViewState, Data>(
                 if (response.value == null){
                     DataState.error(
                         response = Response(
-                            message = "${stateEvent?.errorInfo()} " + "Reason: ${CacheErrors.CACHE_ERROR_DATA_NULL}",
+                            message = "${stateEvent?.errorInfo()} " + "Reason: cache error data is null",
                             uiComponentType = UIComponentType.Dialog(),
                             messageType = MessageType.Error()
                         ),

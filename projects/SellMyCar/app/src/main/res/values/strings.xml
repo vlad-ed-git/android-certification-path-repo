@@ -4,4 +4,15 @@
     <string name="timeout_cache_error">Cache request timed out</string>
     <string name="cache_error">An error occurred accessing the cache</string>
     <string name="unknown_cache_error">An unknown cache error occurred</string>
+    <string name="unknown_remote_error">An unknown network error occurred</string>
+    <string name="remote_error">A network error occurred</string>
+    <string name="timeout_remote_error">Network request timeout</string>
+    <string name="null_data_remote_error">Network requested data is null</string>
+    <string name="unable_to_resolve_host_err">Unable to resolve host</string>
+    <string name="internet_required_err">Can\'t do that operation without an internet connection</string>
+    <string name="check_internet_connection">Check network connection.</string>
+    <string name="unknown_network_err">Unknown network error</string>
+    <string name="network_err_occurred">A network error occurred</string>
+    <string name="network_timeout_err">"Network request timed out "</string>
+    <string name="network_data_null_err">The network requested returned no data</string>
 </resources>
