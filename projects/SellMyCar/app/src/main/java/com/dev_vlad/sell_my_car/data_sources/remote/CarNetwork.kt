@@ -1,47 +1,48 @@
 package com.dev_vlad.sell_my_car.data_sources.remote
 
 import com.dev_vlad.sell_my_car.data_sources.models.Car
+import com.dev_vlad.sell_my_car.database.CarFireStoreService
 
 object CarNetwork : CarNetworkInterface {
     
-    override suspend fun insertOrUpdateCar(car: Car) =
-        FireStoreService.insertOrUpdateCar(car)
-   
+    override suspend fun insertOrUpdateCar( carFireStoreService : CarFireStoreService, car: Car) =
+        carFireStoreService.insertOrUpdateCar(car)
 
-    override suspend fun deleteCar(carId: String) =
-        FireStoreService.deleteCar(carId)
-   
 
-    override suspend fun reInsertDeletedCar(car: Car) =
-        FireStoreService.reInsertDeletedCar(car)
+    override suspend fun deleteCar( carFireStoreService : CarFireStoreService, carId: String) =
+        carFireStoreService.deleteCar(carId)
 
-    override suspend fun deleteCacheDeletedCar(car: Car) =
-        FireStoreService.deleteCacheDeletedCar(car)
-   
 
-    override suspend fun getDeletedCars(): List<Car> =
-        FireStoreService.getDeletedCars()
-   
+    override suspend fun reInsertDeletedCar( carFireStoreService : CarFireStoreService, car: Car) =
+        carFireStoreService.reInsertDeletedCar(car)
 
-    override suspend fun deleteAllCars() =
-            FireStoreService.deleteAllCars()
-   
+    override suspend fun deleteCacheDeletedCar( carFireStoreService : CarFireStoreService, car: Car) =
+        carFireStoreService.deleteCacheDeletedCar(car)
 
-    override suspend fun searchCar(car: Car): Car? =
-        FireStoreService.searchCar(car)
-   
 
-    override suspend fun getAllCars(): List<Car> =
-        FireStoreService.getAllCars()
-   
+    override suspend fun getDeletedCars( carFireStoreService : CarFireStoreService ): List<Car> =
+        carFireStoreService.getDeletedCars()
+
+
+    override suspend fun deleteAllCars( carFireStoreService : CarFireStoreService ) =
+            carFireStoreService.deleteAllCars()
+
+
+    override suspend fun searchCar( carFireStoreService : CarFireStoreService, car: Car): Car? =
+        carFireStoreService.searchCar(car)
+
+
+    override suspend fun getAllCars( carFireStoreService : CarFireStoreService ): List<Car> =
+        carFireStoreService.getAllCars()
+
 
     //testing
-    override suspend fun insertOrUpdateCars(cars: List<Car>) =
-        FireStoreService.insertOrUpdateCars(cars)
+    override suspend fun insertOrUpdateCars( carFireStoreService : CarFireStoreService, cars: List<Car>) =
+        carFireStoreService.insertOrUpdateCars( cars)
 
 
-    override suspend fun reInsertDeletedCars(cars: List<Car>) =
-            FireStoreService.reInsertDeletedCars(cars)
+    override suspend fun reInsertDeletedCars( carFireStoreService : CarFireStoreService, cars: List<Car>) =
+            carFireStoreService.reInsertDeletedCars(cars)
 
 
 
