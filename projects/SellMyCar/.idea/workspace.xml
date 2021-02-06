@@ -7,13 +7,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="075f8576-a083-4b61-8874-ca9541d57001" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/dev_vlad/sell_my_car/data_sources/accessors/local/CarCache.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/dev_vlad/sell_my_car/data_sources/accessors/local/CarCacheInterface.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/dev_vlad/sell_my_car/data_sources/local/CarCache.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/dev_vlad/sell_my_car/data_sources/local/CarCache.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/dev_vlad/sell_my_car/data_sources/local/CarCacheInterface.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/dev_vlad/sell_my_car/data_sources/local/CarCacheInterface.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/dev_vlad/sell_my_car/data_sources/local/CarDaoService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/dev_vlad/sell_my_car/database/CarDaoService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/dev_vlad/sell_my_car/data_sources/remote/CarNetwork.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/dev_vlad/sell_my_car/data_sources/remote/CarNetwork.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/dev_vlad/sell_my_car/data_sources/remote/CarNetworkInterface.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/dev_vlad/sell_my_car/data_sources/remote/CarNetworkInterface.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/dev_vlad/sell_my_car/data_sources/remote/FireStoreService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/dev_vlad/sell_my_car/database/CarFireStoreService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/dev_vlad/sell_my_car/data_sources/local/CacheErrors.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/dev_vlad/sell_my_car/data_sources/accessors/local/CacheErrors.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/dev_vlad/sell_my_car/data_sources/local/CacheResponseHandler.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/dev_vlad/sell_my_car/data_sources/accessors/local/CacheResponseHandler.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/dev_vlad/sell_my_car/data_sources/local/CacheResult.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/dev_vlad/sell_my_car/data_sources/accessors/local/CacheResult.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/dev_vlad/sell_my_car/data_sources/local/CarCache.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/dev_vlad/sell_my_car/data_sources/local/CarCacheInterface.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/dev_vlad/sell_my_car/data_sources/models/Car.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/dev_vlad/sell_my_car/data_sources/accessors/models/Car.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/dev_vlad/sell_my_car/data_sources/models/CarFactory.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/dev_vlad/sell_my_car/data_sources/accessors/models/CarFactory.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/dev_vlad/sell_my_car/data_sources/remote/CarNetwork.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/dev_vlad/sell_my_car/data_sources/accessors/remote/CarNetwork.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/dev_vlad/sell_my_car/data_sources/remote/CarNetworkInterface.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/dev_vlad/sell_my_car/data_sources/accessors/remote/CarNetworkInterface.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/dev_vlad/sell_my_car/data_sources/remote/NetworkErrors.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/dev_vlad/sell_my_car/data_sources/accessors/remote/NetworkErrors.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/dev_vlad/sell_my_car/data_sources/remote/NetworkResponseHandler.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/dev_vlad/sell_my_car/data_sources/accessors/remote/NetworkResponseHandler.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/dev_vlad/sell_my_car/data_sources/remote/NetworkResult.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/dev_vlad/sell_my_car/data_sources/accessors/remote/NetworkResult.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/dev_vlad/sell_my_car/database/CarDaoService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/dev_vlad/sell_my_car/data_sources/database/room/CarDaoService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/dev_vlad/sell_my_car/database/CarFireStoreService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/dev_vlad/sell_my_car/data_sources/database/CarFireStoreService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/dev_vlad/sell_my_car/utils/Constants.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/dev_vlad/sell_my_car/utils/Constants.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,8 +74,8 @@
       <list>
         <option value="Kotlin Interface" />
         <option value="Kotlin Sealed Class" />
-        <option value="Kotlin Class" />
         <option value="Kotlin Object" />
+        <option value="Kotlin Class" />
       </list>
     </option>
   </component>
@@ -88,6 +100,9 @@
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\little\Desktop\little\vlad\Work\mine\Learning\Android\2021_certification\android-certification-path-repo\projects\SellMyCar\app\src\main\java\com\dev_vlad\sell_my_car\database\room" />
+    </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
       <recent name="com.dev_vlad.sell_my_car.database" />
       <recent name="com.dev_vlad.sell_my_car.databases" />
@@ -223,10 +238,14 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="119" y="61" key="#com.intellij.ide.util.MemberChooser" timestamp="1612552437510">
+    <state x="119" y="61" key="#com.intellij.ide.util.MemberChooser" timestamp="1612587459871">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="119" y="61" key="#com.intellij.ide.util.MemberChooser/0.0.1280.689@0.0.1280.689" timestamp="1612552437510" />
+    <state x="119" y="61" key="#com.intellij.ide.util.MemberChooser/0.0.1280.689@0.0.1280.689" timestamp="1612587459871" />
+    <state x="0" y="269" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1612588323925">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="0" y="269" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1280.689@0.0.1280.689" timestamp="1612588323925" />
     <state x="371" y="92" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1612540408298">
       <screen x="0" y="0" width="1280" height="689" />
     </state>

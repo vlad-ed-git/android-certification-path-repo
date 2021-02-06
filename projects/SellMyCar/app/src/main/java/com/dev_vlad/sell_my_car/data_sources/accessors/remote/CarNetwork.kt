@@ -1,7 +1,7 @@
-package com.dev_vlad.sell_my_car.data_sources.remote
+package com.dev_vlad.sell_my_car.data_sources.accessors.remote
 
-import com.dev_vlad.sell_my_car.data_sources.models.Car
-import com.dev_vlad.sell_my_car.database.CarFireStoreService
+import com.dev_vlad.sell_my_car.data_sources.accessors.models.Car
+import com.dev_vlad.sell_my_car.data_sources.database.CarFireStoreService
 
 object CarNetwork : CarNetworkInterface {
     

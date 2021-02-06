@@ -1,6 +1,6 @@
-package com.dev_vlad.sell_my_car.database
+package com.dev_vlad.sell_my_car.data_sources.database.room
 
-import com.dev_vlad.sell_my_car.data_sources.models.Car
+import com.dev_vlad.sell_my_car.data_sources.accessors.models.Car
 
 
 /* a layer inserted between room and local data source

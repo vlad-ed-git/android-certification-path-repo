@@ -1,4 +1,4 @@
-package com.dev_vlad.sell_my_car.data_sources.remote
+package com.dev_vlad.sell_my_car.data_sources.accessors.remote
 
 
 sealed class NetworkResult<out T>{

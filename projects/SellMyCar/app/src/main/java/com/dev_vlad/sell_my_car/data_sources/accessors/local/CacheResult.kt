@@ -1,4 +1,4 @@
-package com.dev_vlad.sell_my_car.data_sources.local
+package com.dev_vlad.sell_my_car.data_sources.accessors.local
 
 
 sealed class CacheResult<out T>{

@@ -1,9 +1,8 @@
-package com.dev_vlad.sell_my_car.data_sources.models
+package com.dev_vlad.sell_my_car.data_sources.accessors.models
 
 import com.dev_vlad.sell_my_car.utils.DateUtil
 import java.util.*
 import kotlin.collections.ArrayList
-import com.dev_vlad.sell_my_car.data_sources.models.Car
 
 object CarFactory {
 

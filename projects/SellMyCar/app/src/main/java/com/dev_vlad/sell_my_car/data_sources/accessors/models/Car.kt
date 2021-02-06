@@ -1,8 +1,7 @@
-package com.dev_vlad.sell_my_car.data_sources.models
+package com.dev_vlad.sell_my_car.data_sources.accessors.models
 
 import android.os.Parcel
 import android.os.Parcelable
-import java.util.concurrent.locks.Condition
 
 enum class CarCondition {
     OUTSTANDING,
