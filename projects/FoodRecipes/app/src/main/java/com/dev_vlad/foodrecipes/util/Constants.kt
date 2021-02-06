@@ -19,4 +19,6 @@ object Constants {
         "wine",
         "italian"
     )
+
+   const val QUERY_EXHAUSTED = "No more results."
 }

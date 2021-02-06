@@ -31,7 +31,7 @@ abstract class DataChannelManager<ViewState> {
       addStateEvent(stateEvent)
       jobFunction
         .onEach { dataState ->
-          dataState?.let { dState ->
+          dataState?.let { dataState ->
             withContext(Main){
               dataState.data?.let { data ->
                 handleNewData(data)

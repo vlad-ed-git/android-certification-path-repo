@@ -1,6 +1,7 @@
 package com.dev_vlad.foodrecipes.viewmodels
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.dev_vlad.foodrecipes.models.Recipe
 import com.dev_vlad.foodrecipes.repositories.RecipeRepo
@@ -11,6 +12,16 @@ class RecipeListViewModel : ViewModel() {
     companion object{
         private val LOG_TAG =  RecipeListViewModel::class.java.simpleName
     }
+
+    enum class ViewState{
+        DISPLAYING_CATEGORIES,
+        DISPLAYING_RECIPES
+    }
+
+    private val viewState = MutableLiveData<ViewState>(ViewState.DISPLAYING_CATEGORIES)
+
+    fun getViewState() : LiveData<ViewState> = viewState
+
 
     private var isViewingRecipes = false
     private var isPerformingQuery = false

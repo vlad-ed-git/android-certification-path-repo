@@ -40,9 +40,6 @@ class RecipeListActivity : BaseActivity() , OnRecipeClickListener {
         initRecycler()
         subscribeToObservers()
         initSearchView()
-        if (!recipeListViewModel.isViewingRecipes()){
-            displaySearchCategories()
-        }
     }
 
 
@@ -73,35 +70,21 @@ class RecipeListActivity : BaseActivity() , OnRecipeClickListener {
 
 
     private fun subscribeToObservers(){
-        recipeListViewModel.getRecipes().observe(this,
-        Observer {  recipeList ->
-            recipeListViewModel.setIsViewingRecipes(true)
-            recipeListViewModel.setIsPerformingQuery(false)
-            if (recipeList == null){
-                MyLogger.logThis(LOG_TAG, "subscribeToObservers()" , "recipe list is null")
-            }else{
-                MyLogger.logThis(LOG_TAG, "subscribeToObservers()" , "${recipeList.size} recipes returned")
-                recipeListViewModel.recipesRetrievedSuccessfully = true
-                recipeRecyclerAdapter.setRecipes(recipeList)
-            }
-        })
+        recipeListViewModel.getViewState().observe(
+            this, Observer {
+                viewState ->
+                when(viewState){
 
-        recipeListViewModel.hasRecipesRequestTimeout().observe(
-                this, {
-                 requestTimedOut ->
-                if (requestTimedOut && !recipeListViewModel.recipesRetrievedSuccessfully){
-                    displaySnackBar(isError = true, msg_res_id =R.string.internet_problem_txt)
+                    RecipeListViewModel.ViewState.DISPLAYING_CATEGORIES -> {
+                        displaySearchCategories()
+                    }
+                    RecipeListViewModel.ViewState.DISPLAYING_RECIPES -> {
+                        //TODO recipes will be displayed from another observer
+                    }
+                    else -> displaySearchCategories()
                 }
-        }
+            }
         )
-
-        recipeListViewModel.hasSearchQueryExhausted().observe(
-                this, {
-                    hasSearchQueryExhausted ->
-               if(hasSearchQueryExhausted){
-                   recipeRecyclerAdapter.displayExhaustedQuery()
-               }
-        })
     }
 
 
