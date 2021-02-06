@@ -2,25 +2,52 @@ package com.dev_vlad.foodrecipes.models
 
 import android.os.Parcel
 import android.os.Parcelable
+import androidx.annotation.NonNull
+import androidx.room.ColumnInfo
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+/**
+ * ** we use the timestamp to know
+ * when to make refresh the data
+ */
+@Entity(tableName = "Recipes")
 data class Recipe(
+    @ColumnInfo(name = "title")
     var title: String,
+
+    @ColumnInfo(name = "publisher")
     var publisher: String,
+
+    @ColumnInfo(name = "ingredients")
     var ingredients: Array<String>?,
+
+    @PrimaryKey(autoGenerate = false)
+    @NonNull
     var recipe_id: String,
+
+    @ColumnInfo(name = "image_url")
     var image_url: String,
-    var social_rank: Float
+
+    @ColumnInfo(name = "social_rank")
+    var social_rank: Float,
+
+    @ColumnInfo(name = "timestamp")
+    var timestamp: Int
+
 ) : Parcelable {
 
     //empty constructor with just recipe_id
     //used only as loading placeholder or category kind --see recycler adapter
     constructor(recipe_id: String, title: String = "", image_url: String = "") : this (
-                title,
-                "",
-                arrayOf(),
-                recipe_id,
-                image_url,
-                0f
+                title=title,
+                publisher="",
+                ingredients = arrayOf(),
+                recipe_id = recipe_id,
+                image_url = image_url,
+                social_rank = 0f,
+                timestamp = 0
             )
 
     constructor(parcel: Parcel) : this(
@@ -29,7 +56,8 @@ data class Recipe(
         parcel.createStringArray(),
         parcel.readString()!!,
         parcel.readString()!!,
-        parcel.readFloat()
+        parcel.readFloat(),
+        parcel.readInt()
     ) {
     }
 
@@ -40,6 +68,7 @@ data class Recipe(
         parcel.writeString(recipe_id)
         parcel.writeString(image_url)
         parcel.writeFloat(social_rank)
+        parcel.writeInt(timestamp)
     }
 
     override fun describeContents(): Int {
@@ -85,4 +114,5 @@ data class Recipe(
     override fun toString(): String {
         return "${Recipe::class.java.simpleName} : $title $publisher $ingredients $recipe_id $image_url Social Rank: $social_rank"
     }
+
 }

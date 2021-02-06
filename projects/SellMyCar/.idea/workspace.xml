@@ -7,8 +7,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="075f8576-a083-4b61-8874-ca9541d57001" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../FoodRecipes/app/src/main/java/com/dev_vlad/foodrecipes/persistence/RecipeDao.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FoodRecipes/app/src/main/java/com/dev_vlad/foodrecipes/persistence/RecipeDatabase.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FoodRecipes/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../FoodRecipes/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FoodRecipes/app/src/main/java/com/dev_vlad/foodrecipes/models/Recipe.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../FoodRecipes/app/src/main/java/com/dev_vlad/foodrecipes/models/Recipe.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FoodRecipes/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../FoodRecipes/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/dev_vlad/sell_my_car/state_managers/DataChannelManager.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/dev_vlad/sell_my_car/state_managers/DataChannelManager.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
