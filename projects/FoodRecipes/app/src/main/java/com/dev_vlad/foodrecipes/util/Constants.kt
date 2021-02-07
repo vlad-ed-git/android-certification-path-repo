@@ -2,6 +2,7 @@ package com.dev_vlad.foodrecipes.util
 
 object Constants {
 
+    const val RECIPE_REFRESH_TIME: Int = 3000
     const val MAX_RESULTS_PAGE: Int = 30
     const val BASE_URL = "https://recipesapi.herokuapp.com"
 

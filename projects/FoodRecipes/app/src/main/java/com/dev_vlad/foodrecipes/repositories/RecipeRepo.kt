@@ -1,91 +1,97 @@
 package com.dev_vlad.foodrecipes.repositories
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MediatorLiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
-import com.dev_vlad.foodrecipes.api.RecipeApiClient
+import com.dev_vlad.foodrecipes.api.ServiceGenerator.getRecipeApi
+import com.dev_vlad.foodrecipes.api.responses.RecipeResponse
+import com.dev_vlad.foodrecipes.api.responses.RecipeSearchResponse
 import com.dev_vlad.foodrecipes.models.Recipe
+import com.dev_vlad.foodrecipes.persistence.RecipeDao
 import com.dev_vlad.foodrecipes.util.Constants
+import com.dev_vlad.foodrecipes.util.network_resources.GenericApiResponse
+import com.dev_vlad.foodrecipes.util.network_resources.NetworkBoundResource
+import com.dev_vlad.foodrecipes.util.network_resources.Resource
 
-object RecipeRepo {
 
-    private var currentQuery:String = ""
-    private var currentPage :Int = 1
+object RecipeRepository  {
 
-    private val isSearchQueryExhausted : MutableLiveData<Boolean> = MutableLiveData(false)
-    //a kind of live data that changes your data before sending it to the observer
-    private val mediatedRecipesList : MediatorLiveData<List<Recipe>> = MediatorLiveData()
+    fun searchRecipesApi(recipeDao: RecipeDao, query: String?, pageNumber: Int): LiveData<Resource<List<Recipe?>?>> {
+        return object :
+            NetworkBoundResource<List<Recipe?>?, RecipeSearchResponse?>() {
 
-    init {
-        initMediators()
-    }
+            override fun saveCallResult(item: RecipeSearchResponse?) {
+                if (item != null) {
+                    val recipes = arrayOfNulls<Recipe>(item.recipes.size)
+                    val recipesToInsert =  item.recipes.toList()
+                    for ((index, rowid) in recipeDao.insertRecipes(recipesToInsert)!!.withIndex()) {
+                        if (rowid == -1L) {
 
-    //we will have more than one mediator later when we setup room
-    private fun initMediators(){
-        val recipeListApiSource = RecipeApiClient.getRecipes()
-        mediatedRecipesList.addSource(recipeListApiSource, Observer {
-            //on changed
-            recipes ->
-            if (recipes != null ) {
-                mediatedRecipesList.value = recipes
-                doneQuery(recipes)
+                            // if the recipe already exists... I don't want to set the ingredients or timestamp b/c
+                            // they will be erased
+                            recipeDao.updateRecipe(
+                                recipes[index]!!.recipe_id,
+                                recipes[index]!!.title,
+                                recipes[index]!!.publisher,
+                                recipes[index]!!.image_url,
+                                recipes[index]!!.social_rank
+                            )
+                        }
+                    }
+                }
             }
-        })
+
+            override fun shouldFetch(data: List<Recipe?>?): Boolean {
+                return true
+            }
+
+            override fun loadFromDb(): LiveData<List<Recipe?>?> {
+                return recipeDao.searchRecipes(query, pageNumber)
+            }
+
+            override fun createCall(): LiveData<GenericApiResponse<RecipeSearchResponse?>> {
+                return getRecipeApi()
+                    .searchRecipe(
+                        Constants.API_KEY,
+                        query, pageNumber.toString()
+                    )
+            }
+        }.resultsAsLiveData()
     }
 
-    private fun doneQuery(recipes : List<Recipe>?){
-        if(recipes == null){
-            isSearchQueryExhausted.value = true
-        }
-        else if(recipes.size % Constants.MAX_RESULTS_PAGE != 0 ) {
-            isSearchQueryExhausted.value = true
-        }
+    fun getRecipeApi(recipeDao: RecipeDao, recipeId: String?): LiveData<Resource<Recipe?>> {
+        return object : NetworkBoundResource<Recipe?, RecipeResponse?>() {
+            override fun saveCallResult(item: RecipeResponse?) {
 
+                // will be null if API key is expired
+                if (item?.getRecipe() != null) {
+                    item.getRecipe()!!.timestamp = (System.currentTimeMillis() / 1000).toInt()
+                    recipeDao.insertRecipe(item.getRecipe())
+                }
+            }
+
+            override fun shouldFetch(data: Recipe?): Boolean {
+                val currentTime = (System.currentTimeMillis() / 1000).toInt()
+                val lastRefresh = data!!.timestamp
+                if (currentTime - data.timestamp >= Constants.RECIPE_REFRESH_TIME) {
+                    return true
+                }
+                return false
+            }
+
+            override fun loadFromDb(): LiveData<Recipe?> {
+                return recipeDao.getRecipe(recipeId)
+            }
+
+            override fun createCall(): LiveData<GenericApiResponse<RecipeResponse?>> {
+                return getRecipeApi().getRecipe(
+                    Constants.API_KEY,
+                    recipeId
+                )
+            }
+        }.resultsAsLiveData()
     }
 
-    fun hasSearchQueryExhausted(): LiveData<Boolean> = isSearchQueryExhausted
-
-
-    fun getRecipes() : LiveData<List<Recipe>> {
-        return mediatedRecipesList
-    }
-
-    fun getARecipe() : LiveData<Recipe> {
-        return RecipeApiClient.getRecipe()
-    }
-
-    fun hasRecipesRequestTimeout() : LiveData<Boolean> {
-        return RecipeApiClient.hasRecipesRequestTimeout()
-    }
-
-    fun hasRecipeRequestTimeout() : LiveData<Boolean> {
-        return RecipeApiClient.hasRecipeRequestTimeout()
-    }
-
-    fun searchRecipesApi(query:String, page:Int = 1){
-        isSearchQueryExhausted.value = false
-        currentQuery = query
-        currentPage = page
-        RecipeApiClient.searchRecipesApi(query, page)
-    }
-
-    fun searchRecipeByIdApi(recipeId:String){
-        RecipeApiClient.searchRecipeByIdApi(recipeId = recipeId)
-    }
-
-
-    fun fetchNextResults(){
-        currentPage += 1
-        RecipeApiClient.searchRecipesApi(currentQuery, currentPage)
-
-    }
-
-    fun cancelSearchRecipesRequest(){
-        RecipeApiClient.cancelSearchRecipesRequest()
-    }
-
-    fun cancelGetRecipeRequest() {
-        RecipeApiClient.cancelGetRecipeRequest()
-    }
 }
+
+
+
+

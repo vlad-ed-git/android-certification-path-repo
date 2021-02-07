@@ -12,7 +12,7 @@ import com.dev_vlad.foodrecipes.models.Recipe
 @Dao
 interface RecipeDao {
     @Insert(onConflict = IGNORE)
-    fun insertRecipes(vararg recipe: Recipe?): LongArray?
+    fun insertRecipes(recipes : List<Recipe>): LongArray?
 
     @Insert(onConflict = REPLACE)
     fun insertRecipe(recipe: Recipe?)
@@ -29,8 +29,8 @@ interface RecipeDao {
 
     @Query("SELECT * FROM recipes WHERE title LIKE '%' || :query || '%' OR ingredients LIKE '%' || :query || '%' " +
                 "ORDER BY social_rank DESC LIMIT (:pageNumber * 30)" )
-    fun searchRecipes(query: String?, pageNumber: Int): LiveData<List<Recipe?>?>?
+    fun searchRecipes(query: String?, pageNumber: Int): LiveData<List<Recipe?>?>
 
     @Query("SELECT * FROM recipes WHERE recipe_id = :recipe_id")
-    fun getRecipe(recipe_id: String?): LiveData<Recipe?>?
+    fun getRecipe(recipe_id: String?): LiveData<Recipe?>
 }

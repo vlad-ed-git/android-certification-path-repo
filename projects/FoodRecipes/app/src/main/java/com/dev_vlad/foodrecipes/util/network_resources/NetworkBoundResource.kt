@@ -9,7 +9,7 @@ import com.dev_vlad.foodrecipes.AppExecutors
 // DataFromCache: Type for the Resource data.
 // DataFromNetwork: Type for the API response.
 abstract class NetworkBoundResource<DataFromCache, DataFromNetwork>
-@MainThread constructor(private val executors : AppExecutors) {
+@MainThread constructor() {
 
 
     private val observableResults = MediatorLiveData<Resource<DataFromCache>>()

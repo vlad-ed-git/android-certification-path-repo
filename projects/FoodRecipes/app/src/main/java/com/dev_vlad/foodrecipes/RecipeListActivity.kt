@@ -56,7 +56,7 @@ class RecipeListActivity : BaseActivity() , OnRecipeClickListener {
             override fun onScrollStateChanged(rv: RecyclerView, newState: Int) {
                if(!recyclerView.canScrollVertically(1)){
                    //this if will trigger if it is at the bottom
-                   recipeListViewModel.searchNextPage()
+                   //TODO
                    MyLogger.logThis(
                            LOG_TAG,
                            "onScrollStateChanged()",
@@ -85,6 +85,28 @@ class RecipeListActivity : BaseActivity() , OnRecipeClickListener {
                 }
             }
         )
+
+        recipeListViewModel.getRecipes().observe(
+            this, { listResource ->
+
+                val recipesList = listResource.data
+                if (recipesList == null){
+                    MyLogger.logThis(
+                    LOG_TAG,
+                      "subscribeToObservers : getRecipes()",
+                      "resource msg & status ${listResource.message} + ${listResource.status} "
+                    )
+                }
+                else{
+                    MyLogger.logThis(
+                        LOG_TAG,
+                        "subscribeToObservers : getRecipes()",
+                        recipesList.toString()
+                    )
+                    recipeRecyclerAdapter.setRecipes(recipesList)
+                }
+            }
+        )
     }
 
 
@@ -101,7 +123,7 @@ class RecipeListActivity : BaseActivity() , OnRecipeClickListener {
     override fun onRecipeCategoryClicked(category: String) {
         MyLogger.logThis(LOG_TAG, "onRecipeCategoryClicked" , " $category")
         recipeRecyclerAdapter.displayLoading()
-        recipeListViewModel.searchRecipesApi(category, page = 1)
+        recipeListViewModel.searchRecipesApi(category, pageNumber = 1)
         searchView.clearFocus()
     }
 
@@ -118,7 +140,7 @@ class RecipeListActivity : BaseActivity() , OnRecipeClickListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 query?.let {
                     recipeRecyclerAdapter.displayLoading()
-                    recipeListViewModel.searchRecipesApi(it, page = 1)
+                    recipeListViewModel.searchRecipesApi(it, pageNumber = 1)
                     searchView.clearFocus()//so when user presses back button, that event is not consumed by this focus
                     MyLogger.logThis(LOG_TAG, "onQueryTextSubmit", "query : $query" )
                 }
@@ -134,17 +156,7 @@ class RecipeListActivity : BaseActivity() , OnRecipeClickListener {
 
 
     override fun onBackPressed() {
-        if (recipeListViewModel.isPerformingQuery()){
-            //cancel query
-            recipeListViewModel.cancelRequest()
-        }
-        if (recipeListViewModel.isViewingRecipes()){
-              recipeListViewModel.setIsViewingRecipes(false)
-             displaySearchCategories()
-        }else{
-            //they are viewing categories
-            super.onBackPressed()
-        }
+        //TODO
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -154,11 +166,7 @@ class RecipeListActivity : BaseActivity() , OnRecipeClickListener {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.action_categories){
-            if (recipeListViewModel.isPerformingQuery()){
-                //cancel query
-                recipeListViewModel.cancelRequest()
-            }
-            displaySearchCategories()
+            //TODO
         }
 
         return super.onOptionsItemSelected(item)
