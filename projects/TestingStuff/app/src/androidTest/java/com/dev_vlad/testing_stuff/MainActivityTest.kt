@@ -1,7 +1,11 @@
 package com.dev_vlad.testing_stuff
 
+import android.nfc.tech.IsoDep
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
@@ -19,21 +23,19 @@ class MainActivityTest {
     var rule = ActivityScenarioRule(MainActivity::class.java)
 
     @Test
-    fun isActivityLaunched() {
+    fun launchDetailsAct() {
 
-       onView(withId(R.id.main_container))
-           .check(matches(isDisplayed()))
-    }
-
-    @Test
-    fun isNextTitleVisible(){
-        //the button is visible
-        onView(withId(R.id.next_btn))
+       onView(withId(R.id.next_btn))
+           .perform(click())
+        onView(withId(R.id.details_container))
             .check(matches(isDisplayed()))
 
-        //the button has the title we expect
-        onView(withId(R.id.next_btn))
-            .check(matches(withText(R.string.next_str)))
+        onView(withId(R.id.back_btn))
+            .perform(click())
+        onView(withId(R.id.main_container))
+            .check(matches(isDisplayed()))
+
     }
+
 
 }
