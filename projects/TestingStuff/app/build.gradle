@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-android-extensions'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -47,7 +48,10 @@ dependencies {
     implementation 'com.google.android.material:material:1.3.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
 
-    //esresso
+    //firebase
+    implementation platform('com.google.firebase:firebase-bom:26.5.0')
+
+    //espresso
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
     //android x test

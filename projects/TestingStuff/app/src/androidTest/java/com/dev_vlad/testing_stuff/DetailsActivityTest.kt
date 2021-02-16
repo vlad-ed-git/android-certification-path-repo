@@ -25,6 +25,10 @@ class DetailsActivityTest{
     @Test
     fun goBackToMain() {
 
+        onView(withId(R.id.back_btn))
+            .perform(click())
+        onView(withId(R.id.main_container))
+            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
 
     }
 

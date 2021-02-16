@@ -30,11 +30,6 @@ class MainActivityTest {
         onView(withId(R.id.details_container))
             .check(matches(isDisplayed()))
 
-        onView(withId(R.id.back_btn))
-            .perform(click())
-        onView(withId(R.id.main_container))
-            .check(matches(isDisplayed()))
-
     }
 
 
