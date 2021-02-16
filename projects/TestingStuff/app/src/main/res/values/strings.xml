@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">TestingStuff</string>
+    <string name="next_str">Next</string>
+    <string name="back_str">Back</string>
+</resources>
